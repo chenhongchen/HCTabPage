@@ -17,33 +17,21 @@ tabPageView.delegate = self;
 
 2.2、代理
 
-//  HCTabPageViewDataSource
+2.2.1、  HCTabPageViewDataSource
 
-// 加载数据源有错误回调
+ - (void)tabPageView:(HCTabPageView *)tabPageView loadDataError:(NSString *)error；// 加载数据源有错误回调
 
-- (void)tabPageView:(HCTabPageView *)tabPageView loadDataError:(NSString *)error；
+ - (NSInteger)numberOfPagesInTabPageView:(HCTabPageView *)tabPageView；// 返回总页数
 
-// 返回总页数
+ - (UIViewController *)tabPageView:(HCTabPageView *)tabPageView controllerForPageAtIndex:(NSInteger)index；// 返回子控制器
 
-- (NSInteger)numberOfPagesInTabPageView:(HCTabPageView *)tabPageView；
+ - (NSString *)tabPageView:(HCTabPageView *)tabPageView titleForTabBarAtIndex:(NSInteger)index；// 返回tabbtn的标题
 
-// 返回子控制器
+2.2.2、 HCTabPageViewDelegate
 
-- (UIViewController *)tabPageView:(HCTabPageView *)tabPageView controllerForPageAtIndex:(NSInteger)index；
+ - (void)tabPageView:(HCTabPageView *)tabPageView didSelectTabBarAtIndex:(NSInteger)atIndex fromIndex:(NSInteger)fromIndex; // 点击tab按钮事件回调
 
-// 返回tabbtn的标题
-
-- (NSString *)tabPageView:(HCTabPageView *)tabPageView titleForTabBarAtIndex:(NSInteger)index；
-
-// HCTabPageViewDelegate
-
-// 点击tab按钮事件回调
-
-- (void)tabPageView:(HCTabPageView *)tabPageView didSelectTabBarAtIndex:(NSInteger)atIndex fromIndex:(NSInteger)fromIndex;
-
-// 页面切换了回调
-
-- (void)tabPageView:(HCTabPageView *)tabPageView didChangePageToIndex:(NSInteger)toIndex formIndex:(NSInteger)formIndex；
+ - (void)tabPageView:(HCTabPageView *)tabPageView didChangePageToIndex:(NSInteger)toIndex formIndex:(NSInteger)formIndex；// 页面切换了回调
 
 
 
