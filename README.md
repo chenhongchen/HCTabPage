@@ -1,5 +1,5 @@
 # HCTabPage
-## 1、主要功能：一个类似腾讯视频的，页面切换框架，并可方便扩展自定义顶部bar;
+## 1、主要功能：一个类似腾讯视频的页面切换框架，可方便扩展自定义顶部bar，有对每个子控制器生命周期进行控制；
 
 ## 2、使用：
 
@@ -48,10 +48,10 @@ tabPageView.delegate = self;
 #### 2.3.2、重写下面两个方法
 
 ```
-// tabPageView会适时调用改方法，并传入offsetX
+// tabPageView会适时调用该方法，并传入offsetX
 - (void)setOffsetX:(CGFloat)offsetX animaton:(BOOL)animation;
 
-// tabPageView会适时调用改方法，并传入index
+// tabPageView会适时调用该方法，并传入index
 - (void)selectTabAtIndex:(NSInteger)selIndex animation:(BOOL)animation;
 ```
 
