@@ -4,10 +4,12 @@
 ## 2、效果展示
 
 展示1：
-![https://github.com/chenhongchen/HCTabPage/blob/master/scrollbar1.gif]
+
+![image](https://github.com/chenhongchen/HCTabPage/blob/master/scrollbar1.gif)
 
 展示2：
-![https://github.com/chenhongchen/HCTabPage/blob/master/scrollbar2.gif]
+
+![image](github.com/chenhongchen/HCTabPage/blob/master/scrollbar2.gif)
 
 ## 3、使用：
 
