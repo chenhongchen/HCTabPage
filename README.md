@@ -19,13 +19,13 @@ tabPageView.delegate = self;
 
 2.2.1、  HCTabPageViewDataSource
 
- - (void)tabPageView:(HCTabPageView *)tabPageView loadDataError:(NSString *)error；// 加载数据源有错误回调
+- - (void)tabPageView:(HCTabPageView *)tabPageView loadDataError:(NSString *)error；// 加载数据源有错误回调
 
- - (NSInteger)numberOfPagesInTabPageView:(HCTabPageView *)tabPageView；// 返回总页数
+- - (NSInteger)numberOfPagesInTabPageView:(HCTabPageView *)tabPageView；// 返回总页数
 
- - (UIViewController *)tabPageView:(HCTabPageView *)tabPageView controllerForPageAtIndex:(NSInteger)index；// 返回子控制器
+- - (UIViewController *)tabPageView:(HCTabPageView *)tabPageView controllerForPageAtIndex:(NSInteger)index；// 返回子控制器
 
- - (NSString *)tabPageView:(HCTabPageView *)tabPageView titleForTabBarAtIndex:(NSInteger)index；// 返回tabbtn的标题
+- - (NSString *)tabPageView:(HCTabPageView *)tabPageView titleForTabBarAtIndex:(NSInteger)index；// 返回tabbtn的标题
 
 2.2.2、 HCTabPageViewDelegate
 
@@ -41,18 +41,12 @@ tabPageView.delegate = self;
 
 2.3.2、重写下面两个方法
 
-// tabPageView会自动传入HCTabPageView中scrollView的offsetX
+- - (void)setOffsetX:(CGFloat)offsetX animaton:(BOOL)animation; // tabPageView会适时调用改方法，并传入offsetX
 
-- (void)setOffsetX:(CGFloat)offsetX animaton:(BOOL)animation;
-
-// 比如tabPageView初始化时设置了curIndex，则会调用改方法，并传入index
-
-- (void)selectTabAtIndex:(NSInteger)selIndex animation:(BOOL)animation;
+- - (void)selectTabAtIndex:(NSInteger)selIndex animation:(BOOL)animation; // tabPageView会适时调用改方法，并传入index
 
 2.3.3、自定义bar中可能需要用到的方法
 
-// 获得一个数组、元素分别为offsetx对应的selIndex、leftIndex、rightIndex 、lRatio(offsetx到左边btn距离与左右btn之间距离的比)
-
-- (NSArray *)positionsForPageOffsetX:(CGFloat)pageOffsetX;
+- - (NSArray *)positionsForPageOffsetX:(CGFloat)pageOffsetX; // 获得一个数组、元素分别为offsetx对应的selIndex、leftIndex、rightIndex 、lRatio(offsetx到左边btn距离与左右btn之间距离的比)
 
 
