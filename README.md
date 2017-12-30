@@ -27,11 +27,11 @@ tabPageView.delegate = self;
 
 - (NSInteger)numberOfPagesInTabPageView:(HCTabPageView *)tabPageView；
 
-// 返回总页数
+// 返回子控制器
 
 - (UIViewController *)tabPageView:(HCTabPageView *)tabPageView controllerForPageAtIndex:(NSInteger)index；
 
-// 返回
+// 返回tabbtn的标题
 
 - (NSString *)tabPageView:(HCTabPageView *)tabPageView titleForTabBarAtIndex:(NSInteger)index；
 
@@ -44,6 +44,8 @@ tabPageView.delegate = self;
 // 页面切换了回调
 
 - (void)tabPageView:(HCTabPageView *)tabPageView didChangePageToIndex:(NSInteger)toIndex formIndex:(NSInteger)formIndex；
+
+
 
 2.3、自定义tabbar步骤
 
