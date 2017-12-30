@@ -5,11 +5,11 @@
 
 展示1：
 
-![image](https://github.com/chenhongchen/HCTabPage/blob/master/scrollbar1.gif)
+![gif](https://github.com/chenhongchen/HCTabPage/blob/master/scrollbar1.gif)
 
 展示2：
 
-![image](github.com/chenhongchen/HCTabPage/blob/master/scrollbar2.gif)
+![gif](https://github.com/chenhongchen/HCTabPage/blob/master/scrollbar2.gif)
 
 ## 3、使用：
 
