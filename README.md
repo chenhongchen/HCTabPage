@@ -55,7 +55,7 @@ tabPageView.delegate = self;
 
 #### 3.3.1、新建自定义bar文件，继承HCTabPageBar
 
-#### 3.3.2、重写下面两个方法
+#### 3.3.2、重写下面两个方法，在这个两个方法中实现你自定义bar所需要的效果
 
 ```
 // tabPageView会适时调用该方法，并传入offsetX
@@ -70,5 +70,8 @@ tabPageView.delegate = self;
 // 获得一个数组、元素分别为offsetx对应的selIndex、leftIndex、rightIndex 、lRatio(offsetx到左边btn距离与左右btn之间距离的比)
 - (NSArray *)positionsForPageOffsetX:(CGFloat)pageOffsetX;
 ```
+
+#### 3.3.4、将bar的类名作为常量字符串，在HCTabPageConst.h中定义，初始化HCTabPageView时，barStytle传入这个常量字符串即可
+
 
 
