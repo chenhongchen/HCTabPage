@@ -71,7 +71,7 @@ tabPageView.delegate = self;
 - (NSArray *)positionsForPageOffsetX:(CGFloat)pageOffsetX;
 ```
 
-#### 3.3.4、将bar的类名作为常量字符串，在HCTabPageConst.h中定义，初始化HCTabPageView时，barStytle传入这个常量字符串即可
+#### 3.3.4、初始化HCTabPageView时，barStytle传入自定义bar的类名字符串即可
 
 
 
