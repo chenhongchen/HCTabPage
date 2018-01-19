@@ -433,7 +433,9 @@
         [nextPageVc beginAppearanceTransition:YES animated:NO];
         [nextPageVc endAppearanceTransition];
         NSMutableArray *arrayM = [NSMutableArray arrayWithArray:_didAppearPageControllers];
-        [arrayM addObject:nextPageVc];
+        if ([nextPageVc isKindOfClass:[UIViewController class]]) {
+            [arrayM addObject:nextPageVc];
+        }
         _didAppearPageControllers = arrayM;
     }
     

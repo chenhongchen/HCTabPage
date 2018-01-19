@@ -46,6 +46,9 @@
 - (NSArray *)positionsForPageOffsetX:(CGFloat)pageOffsetX
 {
     CGFloat pageW = self.superview.bounds.size.width;
+    if (pageW <= 0) {
+        return nil;
+    }
     NSInteger leftIndex = floor(pageOffsetX / pageW);
     NSInteger rightIndex = ceil(pageOffsetX / pageW);
     CGFloat lRatio = (pageOffsetX - leftIndex * pageW) / pageW;

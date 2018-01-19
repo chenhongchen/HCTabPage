@@ -42,7 +42,7 @@
     [super viewDidLayoutSubviews];
     CGRect rect = [UIScreen mainScreen].bounds;
     rect.origin.y = CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) + self.navigationController.navigationBar.bounds.size.height;
-    rect.size.height = rect.size.height - rect.origin.y - 49 - CGRectGetHeight([UIApplication sharedApplication].statusBarFrame);
+    rect.size.height = rect.size.height - rect.origin.y - (self.navigationController.childViewControllers.count > 1 ? 0 : 49);;
     self.tabPageView.frame = rect;
 }
 
