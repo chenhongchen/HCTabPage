@@ -34,7 +34,7 @@
 
 - (instancetype)initWithBarStyle:(NSString *)barStyle;
 + (instancetype)tabPageViewWithBarStyle:(NSString *)barStyle;
-- (void)reloadTabPageView;
+- (void)reload;
 - (void)setPageAtIndex:(NSInteger)index animation:(BOOL)animation;
 
 /** tabPageBar 属性设置*/

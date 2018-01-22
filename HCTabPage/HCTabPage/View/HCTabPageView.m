@@ -31,6 +31,8 @@
 //@property (nonatomic, strong) UIViewController *nextPageController;
 /** 已显示且未执行消失的页控制器集合 */
 @property (nonatomic, strong) NSArray *didAppearPageControllers;
+
+@property (nonatomic, assign) BOOL hasFirstLayout;
 @end
 
 @implementation HCTabPageView
@@ -65,7 +67,10 @@
     [super layoutSubviews];
 //    [self scrollViewAdaptation];
     [self setupFrame];
-    [self reloadTabPageView];
+    // reload配置的时候，需要已布局好了，不然界面会出现异常
+    [self reloadAfterFristLayout];
+    // 这里用于旋转时适配bar的位置
+    [self.tabPageBar setOffsetX:_curIndex * self.bounds.size.width animaton:YES];
 }
 
 - (void)dealloc
@@ -111,17 +116,20 @@
 }
 
 #pragma mark - 外部方法
-- (void)reloadTabPageView
+- (void)reload
 {
-    if (_curIndex < 0) {
-        _curIndex = 0;
+    // reload配置的时候，需要已布局好了，不然界面会出现异常
+    if (_hasFirstLayout) {
+        if (_curIndex < 0) {
+            _curIndex = 0;
+        }
+        self.pagesScrollView.delegate = nil;
+        [self loadDataSource];
+        
+        [self selectPageAtIndex:_curIndex animation:NO];
+        [self.tabPageBar selectTabAtIndex:_curIndex animation:NO];
+        self.pagesScrollView.delegate = self;
     }
-    self.pagesScrollView.delegate = nil;
-    [self loadDataSource];
-    
-    [self selectPageAtIndex:_curIndex animation:NO];
-    [self.tabPageBar selectTabAtIndex:_curIndex animation:NO];
-    self.pagesScrollView.delegate = self;
 }
 
 - (void)setPageAtIndex:(NSInteger)index animation:(BOOL)animation
@@ -289,6 +297,14 @@
 }
 
 #pragma mark - 内部方法
+- (void)reloadAfterFristLayout
+{
+    if (!_hasFirstLayout) {
+        _hasFirstLayout = YES;
+        [self reload];
+    }
+}
+
 - (void)clearSourceData
 {
     _pagesNumber = 0;
@@ -305,7 +321,7 @@
 /** 滑动时设置下一页索引和当前页索引、滑动停止时disappear其他已显示的页 */
 - (void)setupNextAndCurIndex
 {
-    CGFloat offset = self.pagesScrollView.contentOffset.x / self.pagesScrollView.bounds.size.width;
+    CGFloat offset = self.pagesScrollView.contentOffset.x / self.bounds.size.width;
     // 1.滑动停止
     if (offset == floor(offset)) {
         UIViewController *curPageVc = _pageControllers[_curIndex];
@@ -381,11 +397,6 @@
         return;
     }
     
-    if (_nextIndex == _curIndex) {
-        return;
-    }
-    
-    
     UIViewController *nextPageVc = _pageControllers[_nextIndex];
     
     // page控制器初次添加到容器，会自动appear
@@ -406,8 +417,8 @@
         _didAppearPageControllers = arrayM;
     }
     
-    CGFloat width = self.pagesScrollView.bounds.size.width;
-    CGFloat height = self.pagesScrollView.bounds.size.height;
+    CGFloat width = self.bounds.size.width;
+    CGFloat height = self.bounds.size.height;
     CGFloat x = _nextIndex * width;
     CGFloat y = 0;
     nextPageVc.view.frame = CGRectMake(x, y, width, height);
@@ -439,8 +450,8 @@
         _didAppearPageControllers = arrayM;
     }
     
-    CGFloat width = self.pagesScrollView.bounds.size.width;
-    CGFloat height = self.pagesScrollView.bounds.size.height;
+    CGFloat width = self.bounds.size.width;
+    CGFloat height = self.bounds.size.height;
     CGFloat y = 0;
     CGFloat x = (_curIndex + ((_nextIndex > _curIndex) ? 1 : -1)) * width;
     if (_curIndex == _nextIndex) {
@@ -571,7 +582,7 @@
         return;
     }
     
-    self.pagesScrollView.contentSize = CGSizeMake(_pagesNumber * self.pagesScrollView.bounds.size.width, 0);
+    self.pagesScrollView.contentSize = CGSizeMake(_pagesNumber * self.bounds.size.width, 0);
     self.tabPageBar.titles = _tabTitles;
 }
 @end

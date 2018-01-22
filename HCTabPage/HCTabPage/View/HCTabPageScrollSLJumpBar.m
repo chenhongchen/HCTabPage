@@ -54,8 +54,6 @@
     else {
         _slideLine.frame = rect;
     }
-    
-    NSLog(@"_slideLine = %@", _slideLine);
 }
 
 @end

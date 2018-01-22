@@ -41,6 +41,7 @@
         UIView *slideLine = [[UIView alloc] init];
         [self.scrollView addSubview:slideLine];
         _slideLine = slideLine;
+        slideLine.hidden = YES;
     }
     return _slideLine;
 }
@@ -188,6 +189,7 @@
     [self setupItemsWithPositions:positions animation:animation];
     [self setupSlideLineFrameWithPositions:positions animation:animation];
     [self scrollToFitForSelItemWithPositions:positions animation:animation];
+    self.slideLine.hidden = NO;
 }
 
 - (void)selectTabAtIndex:(NSInteger)selIndex animation:(BOOL)animation

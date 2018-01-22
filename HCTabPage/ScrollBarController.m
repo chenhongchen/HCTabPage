@@ -35,6 +35,11 @@
         tabPageView.padding = 20;
         tabPageView.fadeTitleColor = YES;
         tabPageView.btnHeight = 36;
+        
+        CGRect rect = [UIScreen mainScreen].bounds;
+        rect.origin.y = CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) + self.navigationController.navigationBar.bounds.size.height;
+        rect.size.height = rect.size.height - rect.origin.y - (self.navigationController.childViewControllers.count > 1 ? 0 : 49);
+        tabPageView.frame = rect;
     }
     return _tabPageView;
 }
@@ -44,6 +49,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupNav];
+    [self tabPageView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -54,11 +60,11 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
+    
     CGRect rect = [UIScreen mainScreen].bounds;
     rect.origin.y = CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) + self.navigationController.navigationBar.bounds.size.height;
     rect.size.height = rect.size.height - rect.origin.y - (self.navigationController.childViewControllers.count > 1 ? 0 : 49);
     self.tabPageView.frame = rect;
-//    [self.tabPageView setPageAtIndex:2 animation:NO];
 }
 
 - (BOOL)hidesBottomBarWhenPushed
