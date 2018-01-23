@@ -157,6 +157,16 @@
     }
 }
 
+- (void)setTabPageHeaderView:(UIView *)tabPageHeaderView
+{
+    if (tabPageHeaderView != _tabPageHeaderView) {
+        [_tabPageHeaderView removeFromSuperview];
+        [self addSubview:tabPageHeaderView];
+        _tabPageHeaderView = tabPageHeaderView;
+        [self setupFrame];
+    }
+}
+
 #pragma mark - tabPageBar 属性设置
 - (void)setTabPageBarHeight:(CGFloat)tabPageBarHeight
 {
@@ -500,7 +510,19 @@
     CGFloat y = 0;
     
     self.tabPageBar.frame = CGRectMake(x, y, width, height);
-    y = CGRectGetMaxY(self.tabPageBar.frame);
+    
+    if ([_tabPageHeaderView isKindOfClass:[UIView class]]) {
+        CGRect rect = _tabPageHeaderView.bounds;
+        rect.origin.y = CGRectGetMaxY(self.tabPageBar.frame);
+        rect.size.width = self.bounds.size.width;
+        _tabPageHeaderView.frame = rect;
+        
+        y = CGRectGetMaxY(_tabPageHeaderView.frame);
+    }
+    else
+    {
+        y = CGRectGetMaxY(self.tabPageBar.frame);
+    }
     height = self.bounds.size.height - y;
     self.pagesScrollView.frame = CGRectMake(x, y, width, height);
 }

@@ -27,6 +27,7 @@
 @interface HCTabPageView : UIView
 @property (nonatomic, weak) id <HCTabPageViewDataSource> dataSource;
 @property (nonatomic, weak) id <HCTabPageViewDelegate> delegate;
+@property (nonatomic, weak) UIView *tabPageHeaderView;
 /** 所在的控制器, 如不传会自动获取 */
 @property (nonatomic, weak) UIViewController *ownVC;
 /** 当前页索引 */

@@ -12,6 +12,7 @@
 
 @interface ScrollBarController ()<HCTabPageViewDataSource, HCTabPageViewDelegate>
 @property (nonatomic, weak) HCTabPageView *tabPageView;
+@property (nonatomic, weak) UIView *tabPageHeaderView;
 @end
 
 @implementation ScrollBarController
@@ -50,6 +51,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupNav];
     [self tabPageView];
+    [self setupTabPageHeaderView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -76,6 +78,15 @@
 {
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"切换页" style:UIBarButtonItemStylePlain target:self action:@selector(barItemClicked)];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+}
+
+- (void)setupTabPageHeaderView
+{
+    UIView *tabPageHeaderView = [[UIView alloc] init];
+    self.tabPageView.tabPageHeaderView = tabPageHeaderView;
+    _tabPageHeaderView = tabPageHeaderView;
+    tabPageHeaderView.backgroundColor = [UIColor purpleColor];
+    tabPageHeaderView.frame = CGRectMake(0, 0, 200, 44);
 }
 
 #pragma mark - HCTabPageViewDataSource
@@ -110,6 +121,7 @@
 
 - (void)tabPageView:(HCTabPageView *)tabPageView didChangePageToIndex:(NSInteger)toIndex formIndex:(NSInteger)formIndex
 {
+    self.tabPageHeaderView.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1.0];
     NSLog(@"didChangePageToIndex: %ld fromIndex: %ld", toIndex, formIndex);
 }
 
