@@ -28,7 +28,7 @@
         tabPageView.ownVC = self;
         tabPageView.titleColor = kTP_Color(48, 48, 48, 1.0);
         tabPageView.titleFont = [UIFont systemFontOfSize:17];
-        tabPageView.selTitleFont = [UIFont systemFontOfSize:19];
+        tabPageView.selTitleFont = [UIFont boldSystemFontOfSize:19];
         tabPageView.selTitleColor = kTP_Color(253, 112, 34, 1.0);
         tabPageView.slideLineColor = kTP_Color(253, 112, 34, 1.0);
         tabPageView.slideLineHeight = 3;

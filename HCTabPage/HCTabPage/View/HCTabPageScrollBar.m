@@ -154,6 +154,9 @@
     for (UIButton *item in _items) {
         item.titleLabel.font = titleFont;
     }
+    if (_selTitleFont.pointSize < _titleFont.pointSize) {
+        self.selTitleFont = titleFont;
+    }
 }
 
 - (void)setSelTitleFont:(UIFont *)selTitleFont
@@ -297,12 +300,25 @@
         if (lRatio == 0) {
             _lastIndex = _selIndex;
             UIButton *lastItem = _items[_lastIndex];
+            lastItem.titleLabel.font = [UIFont systemFontOfSize:_titleFont.pointSize];
+            
             _selIndex = selIndex;
             UIButton *selItem = _items[_selIndex];
             if (!_gradientTitleColor) {
                 [lastItem setTitleColor:_titleColor forState:UIControlStateNormal];
                 [selItem setTitleColor:_selTitleColor forState:UIControlStateNormal];
             }
+            NSString *fontUIUsageAttribute = _selTitleFont.fontDescriptor.fontAttributes[@"NSCTFontUIUsageAttribute"];
+            if ([fontUIUsageAttribute isEqualToString:@"CTFontEmphasizedUsage"]) {
+                selItem.titleLabel.font = [UIFont boldSystemFontOfSize:_titleFont.pointSize];
+            }
+            else
+            {
+                selItem.titleLabel.font = [UIFont systemFontOfSize:_titleFont.pointSize];
+            }
+            
+            [self setupBtnsFrameWithAnimation:NO];
+            
             lastItem.transform = CGAffineTransformIdentity;
             CGFloat r = (norF + sF) / norF;
             selItem.transform = CGAffineTransformMakeScale(r, r);
