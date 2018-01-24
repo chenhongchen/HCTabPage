@@ -313,7 +313,6 @@
             CGFloat rF = lRatio * sF;
             CGFloat lr = (norF + lF) / norF;
             CGFloat rr = (norF + rF) / norF;
-            NSLog(@"%f, %f", lr, rr);
             
             leftItem.transform = CGAffineTransformMakeScale(lr, lr);
             rightItem.transform = CGAffineTransformMakeScale(rr, rr);
