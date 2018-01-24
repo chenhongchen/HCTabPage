@@ -13,6 +13,7 @@
 @interface ScrollBarController ()<HCTabPageViewDataSource, HCTabPageViewDelegate>
 @property (nonatomic, weak) HCTabPageView *tabPageView;
 @property (nonatomic, weak) UIView *tabPageHeaderView;
+@property (nonatomic, weak) UISearchBar *searchBar;
 @end
 
 @implementation ScrollBarController
@@ -38,10 +39,18 @@
         tabPageView.gradientTitleFont = YES;
         tabPageView.btnHeight = 36;
         tabPageView.realTimeMoveSelItem = NO;
+        tabPageView.bgColor = [UIColor colorWithRed:255/255.0 green:255/255.0  blue:255/255.0  alpha:0.9];
         
         CGRect rect = [UIScreen mainScreen].bounds;
-        rect.origin.y = CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) + self.navigationController.navigationBar.bounds.size.height;
-        rect.size.height = rect.size.height - rect.origin.y - (self.navigationController.childViewControllers.count > 1 ? 0 : 49);
+        if (self.navigationController.childViewControllers.count <= 1) {
+            rect.origin.y = 0;
+            rect.size.height = rect.size.height - 49;
+        }
+        else
+        {
+            rect.origin.y = CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) + self.navigationController.navigationBar.bounds.size.height;
+            rect.size.height = rect.size.height - rect.origin.y;
+        }
         tabPageView.frame = rect;
     }
     return _tabPageView;
@@ -56,6 +65,20 @@
     [self setupTabPageHeaderView];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.navigationController.childViewControllers.count <= 1) {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+        self.tabPageView.passThrough = YES;
+    }
+    else
+    {
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+        self.tabPageView.passThrough = NO;
+    }
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -66,9 +89,20 @@
     [super viewDidLayoutSubviews];
     
     CGRect rect = [UIScreen mainScreen].bounds;
-    rect.origin.y = CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) + self.navigationController.navigationBar.bounds.size.height;
-    rect.size.height = rect.size.height - rect.origin.y - (self.navigationController.childViewControllers.count > 1 ? 0 : 49);
+    if (self.navigationController.childViewControllers.count <= 1) {
+        rect.origin.y = 0;
+        rect.size.height = rect.size.height - 49;
+        self.tabPageView.slideLineHeight = 0;
+    }
+    else
+    {
+        rect.origin.y = CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) + self.navigationController.navigationBar.bounds.size.height;
+        rect.size.height = rect.size.height - rect.origin.y;
+    }
     self.tabPageView.frame = rect;
+    rect = self.searchBar.frame;
+    rect.size.width = self.view.bounds.size.width;
+    self.searchBar.frame = rect;
 }
 
 - (BOOL)hidesBottomBarWhenPushed
@@ -90,6 +124,7 @@
     tabPageHeaderView.backgroundColor = [UIColor whiteColor];
     tabPageHeaderView.frame = CGRectMake(0, 0, 200, 44);
     UISearchBar *searchBar = [[UISearchBar alloc] init];
+    _searchBar = searchBar;
     searchBar.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44);
     [tabPageHeaderView addSubview:searchBar];
 }

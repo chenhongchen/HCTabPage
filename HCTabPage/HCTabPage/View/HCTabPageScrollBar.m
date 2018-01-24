@@ -13,7 +13,6 @@
 @property (nonatomic, assign) NSInteger selIndex;
 @property (nonatomic, assign) NSInteger lastIndex;
 
-@property (nonatomic, weak) UIView *topLine; // 用于防止scrollView自动布局
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, strong) NSArray *items;
 @property (nonatomic, weak) UIView *slideLine;
@@ -31,6 +30,7 @@
         scrollView.delegate = self;
         scrollView.showsHorizontalScrollIndicator = NO;
         scrollView.showsVerticalScrollIndicator = NO;
+        scrollView.backgroundColor = [UIColor clearColor];
     }
     return _scrollView;
 }
@@ -44,16 +44,6 @@
         slideLine.hidden = YES;
     }
     return _slideLine;
-}
-
-- (UIView *)topLine
-{
-    if (_topLine == nil) {
-        UIView *topLine = [[UIView alloc] init];
-        [self addSubview:topLine];
-        _topLine = topLine;
-    }
-    return _topLine;
 }
 
 - (UIView *)botLine
@@ -72,6 +62,14 @@
     if (self = [super initWithFrame:frame]) {
     }
     return self;
+}
+
+- (void)didMoveToSuperview
+{
+    [super didMoveToSuperview];
+    if (@available(iOS 11.0, *)) {
+        self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
 }
 
 - (void)layoutSubviews
@@ -120,9 +118,6 @@
 - (void)setBgColor:(UIColor *)bgColor
 {
     _bgColor = bgColor;
-    self.backgroundColor = bgColor;
-    self.topLine.backgroundColor = bgColor;
-    self.scrollView.backgroundColor = bgColor;
 }
 
 - (void)setSlideLineColor:(UIColor *)slideLineColor
@@ -212,19 +207,17 @@
 
 - (void)setupOtherViewsFrame
 {
-    CGRect rect = self.bounds;
     CGFloat selfHeight = self.bounds.size.height;
     CGFloat selfWidth = self.bounds.size.width;
     if (_btnHeight <= 0) {
-        self.scrollView.frame = CGRectMake(0, 1, selfWidth, selfHeight - 1 - _botLineHeight);
+        self.scrollView.frame = CGRectMake(0, 0, selfWidth, selfHeight - _botLineHeight);
     }
     else {
-        CGFloat h = selfHeight - 1 - _botLineHeight;
-        CGFloat centerX = 1 + h * 0.5;
+        CGFloat h = selfHeight - _botLineHeight;
+        CGFloat centerX = h * 0.5;
         CGFloat y = centerX - _btnHeight * 0.5;
         self.scrollView.frame = CGRectMake(0, y, selfWidth, _btnHeight);
     }
-    self.topLine.frame = CGRectMake(0, 0, rect.size.width, 1);
     self.botLine.frame = CGRectMake(0, self.bounds.size.height - _botLineHeight, self.bounds.size.width, _botLineHeight);
 }
 
@@ -408,9 +401,11 @@
     CGFloat selItemCX = CGRectGetMinX(selItem.frame) + CGRectGetWidth(selItem.frame) * 0.5;
     CGFloat scrollViewW = self.scrollView.bounds.size.width;
     CGFloat scrollViewW_1_2 = scrollViewW * 0.5;
+    UIButton *lastItem = _items.lastObject;
+    CGFloat maxX = CGRectGetMaxX(lastItem.frame);
     if (animation) {
         [UIView animateWithDuration:kTP_AniDuration animations:^{
-            if (selItemCX < scrollViewW_1_2) {
+            if (selItemCX < scrollViewW_1_2 || maxX < self.scrollView.bounds.size.width) {
                 self.scrollView.contentOffset = CGPointMake(-_leftMargin, 0);
             }
             else if (scrollViewContentW - selItemCX < scrollViewW_1_2) {
@@ -423,7 +418,7 @@
     }
     else
     {
-        if (selItemCX < scrollViewW_1_2) {
+        if (selItemCX < scrollViewW_1_2 || maxX < self.scrollView.bounds.size.width) {
             self.scrollView.contentOffset = CGPointMake(-_leftMargin, 0);
         }
         else if (scrollViewContentW - selItemCX < scrollViewW_1_2) {

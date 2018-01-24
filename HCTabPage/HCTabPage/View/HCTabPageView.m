@@ -17,6 +17,7 @@
 @property (nonatomic, copy) NSString *barStyle;
 /** 页控制器容器 */
 @property (nonatomic, weak) UIScrollView *pagesScrollView;
+@property (nonatomic, weak) UIView *barBgView;
 /** 页数 */
 @property (nonatomic, assign) NSInteger pagesNumber;
 /** 所有页控制器集合 */
@@ -33,6 +34,8 @@
 @property (nonatomic, strong) NSArray *didAppearPageControllers;
 
 @property (nonatomic, assign) BOOL hasFirstLayout;
+
+@property (nonatomic, assign) UIInterfaceOrientation orientation;
 @end
 
 @implementation HCTabPageView
@@ -45,8 +48,8 @@
 
 - (instancetype)initWithBarStyle:(NSString *)barStyle
 {
+    _barStyle = barStyle;
     if (self = [super init]) {
-        _barStyle = barStyle;
     }
     return self;
 }
@@ -58,14 +61,20 @@
             _barStyle = TabPageScrollBar;
         }
         _tabPageBarHeight = 40;
+        self.bgColor = [UIColor whiteColor];
     }
     return self;
+}
+
+- (void)didMoveToSuperview
+{
+    [super didMoveToSuperview];
+    [self scrollViewAdaptation];
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-//    [self scrollViewAdaptation];
     [self setupFrame];
     // reload配置的时候，需要已布局好了，不然界面会出现异常
     [self reloadAfterFristLayout];
@@ -73,6 +82,8 @@
     // 用于旋转时适配
     self.pagesScrollView.contentSize = CGSizeMake(_pagesNumber * self.bounds.size.width, 0);
     self.pagesScrollView.contentOffset = CGPointMake(_curIndex * self.bounds.size.width, 0);
+    _orientation = [UIApplication sharedApplication].statusBarOrientation;
+    [self scrollViewDidScroll:self.pagesScrollView];
 }
 
 - (void)dealloc
@@ -115,6 +126,16 @@
         tabPageBar.delegate = self;
     }
     return _tabPageBar;
+}
+
+- (UIView *)barBgView
+{
+    if (_barBgView == nil) {
+        UIView *barBgView = [[UIView alloc] init];
+        [self addSubview:barBgView];
+        _barBgView = barBgView;
+    }
+    return _barBgView;
 }
 
 #pragma mark - 外部方法
@@ -167,6 +188,12 @@
         _tabPageHeaderView = tabPageHeaderView;
         [self setupFrame];
     }
+}
+
+- (void)setCurIndex:(NSInteger)curIndex
+{
+    _curIndex = curIndex;
+    _nextIndex = curIndex;
 }
 
 #pragma mark - tabPageBar 属性设置
@@ -236,6 +263,7 @@
 {
     _bgColor = bgColor;
     self.tabPageBar.bgColor = _bgColor;
+    self.barBgView.backgroundColor = _bgColor;
 }
 
 - (void)setSlideLineColor:(UIColor *)slideLineColor
@@ -289,9 +317,12 @@
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self setupNextAndCurIndex];
-    [self setupNextAndCurPageControllerForShow];
-    [self.tabPageBar setOffsetX:scrollView.contentOffset.x animaton:YES];
+    UIInterfaceOrientation orientatin = [UIApplication sharedApplication].statusBarOrientation;
+    if (_orientation == orientatin) {// 没有旋转才调用这些方法
+        [self setupNextAndCurIndex];
+        [self setupNextAndCurPageControllerForShow];
+        [self.tabPageBar setOffsetX:scrollView.contentOffset.x animaton:YES];
+    }
 }
 
 // 滚动视图停止时调用
@@ -515,8 +546,7 @@
     CGFloat height = _tabPageBarHeight;
     CGFloat width = self.bounds.size.width;
     CGFloat x = 0;
-    CGFloat y = 0;
-    
+    CGFloat y = _passThrough ? CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) : 0;
     self.tabPageBar.frame = CGRectMake(x, y, width, height);
     
     if ([_tabPageHeaderView isKindOfClass:[UIView class]]) {
@@ -524,15 +554,21 @@
         rect.origin.y = CGRectGetMaxY(self.tabPageBar.frame);
         rect.size.width = self.bounds.size.width;
         _tabPageHeaderView.frame = rect;
-        
-        y = CGRectGetMaxY(_tabPageHeaderView.frame);
     }
-    else
-    {
-        y = CGRectGetMaxY(self.tabPageBar.frame);
-    }
+    
+    width = self.bounds.size.width;
+    height = MAX(CGRectGetMaxY(_tabPageHeaderView.frame), CGRectGetMaxY(self.tabPageBar.frame));
+    x = 0;
+    y = 0;
+    self.barBgView.frame = CGRectMake(x, y, width, height);
+    
+    x = 0;
+    y = _passThrough ? 0 : CGRectGetMaxY(self.barBgView.frame);
+    width = self.bounds.size.width;
     height = self.bounds.size.height - y;
     self.pagesScrollView.frame = CGRectMake(x, y, width, height);
+    [self sendSubviewToBack:self.barBgView];
+    [self sendSubviewToBack:self.pagesScrollView];
 }
 
 - (UIViewController *)controllerForSelf {

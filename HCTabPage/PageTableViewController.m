@@ -17,6 +17,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    else
+    {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    
+    if (self.navigationController.childViewControllers.count <= 1 && [self.parentViewController isKindOfClass:[ScrollBarController class]]) {
+        self.tableView.contentInset = UIEdgeInsetsMake(88 + CGRectGetHeight([UIApplication sharedApplication].statusBarFrame), 0, 0, 0);
+    }
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    if (self.navigationController.childViewControllers.count <= 1 && [self.parentViewController isKindOfClass:[ScrollBarController class]]) {
+        self.tableView.contentInset = UIEdgeInsetsMake(88 + CGRectGetHeight([UIApplication sharedApplication].statusBarFrame), 0, 0, 0);
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated

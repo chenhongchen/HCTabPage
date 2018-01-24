@@ -56,8 +56,20 @@
         leftIndex = 0;
         lRatio = 0;
     }
+    if (leftIndex > _titles.count - 1) {
+        leftIndex = _titles.count - 1;
+        lRatio = 0;
+    }
+    if (rightIndex < 0) {
+        rightIndex = 0;
+        lRatio = 0;
+    }
     if (rightIndex > _titles.count - 1) {
         rightIndex = _titles.count - 1;
+        lRatio = 0;
+    }
+    if (leftIndex > rightIndex) {
+        leftIndex = rightIndex;
         lRatio = 0;
     }
     NSInteger selIndex = ((lRatio < 0.5) ? leftIndex : rightIndex);
