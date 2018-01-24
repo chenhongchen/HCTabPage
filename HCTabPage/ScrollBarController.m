@@ -34,8 +34,10 @@
         tabPageView.tabPageBarHeight = 44;
         tabPageView.curIndex = 2;
         tabPageView.padding = 20;
-        tabPageView.fadeTitleColor = YES;
+        tabPageView.gradientTitleColor = YES;
+        tabPageView.gradientTitleFont = YES;
         tabPageView.btnHeight = 36;
+        tabPageView.realTimeMoveSelItem = NO;
         
         CGRect rect = [UIScreen mainScreen].bounds;
         rect.origin.y = CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) + self.navigationController.navigationBar.bounds.size.height;
@@ -85,8 +87,11 @@
     UIView *tabPageHeaderView = [[UIView alloc] init];
     self.tabPageView.tabPageHeaderView = tabPageHeaderView;
     _tabPageHeaderView = tabPageHeaderView;
-    tabPageHeaderView.backgroundColor = [UIColor purpleColor];
+    tabPageHeaderView.backgroundColor = [UIColor whiteColor];
     tabPageHeaderView.frame = CGRectMake(0, 0, 200, 44);
+    UISearchBar *searchBar = [[UISearchBar alloc] init];
+    searchBar.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44);
+    [tabPageHeaderView addSubview:searchBar];
 }
 
 #pragma mark - HCTabPageViewDataSource
@@ -121,7 +126,7 @@
 
 - (void)tabPageView:(HCTabPageView *)tabPageView didChangePageToIndex:(NSInteger)toIndex formIndex:(NSInteger)formIndex
 {
-    self.tabPageHeaderView.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1.0];
+//    self.tabPageHeaderView.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1.0];
     NSLog(@"didChangePageToIndex: %ld fromIndex: %ld", toIndex, formIndex);
 }
 

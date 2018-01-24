@@ -31,7 +31,7 @@
         tabPageView.tabPageBarHeight = 0;
         tabPageView.curIndex = 1;
         tabPageView.padding = 20;
-        tabPageView.fadeTitleColor = YES;
+        tabPageView.gradientTitleColor = YES;
         tabPageView.btnHeight = 30;
         
         CGRect rect = [UIScreen mainScreen].bounds;

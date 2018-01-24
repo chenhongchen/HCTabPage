@@ -58,7 +58,8 @@
 @property (nonatomic, assign) CGFloat botLineHeight;
 /** 只要selIndex变化，则移动对应的Item到显示位置 */
 @property (nonatomic, assign) BOOL realTimeMoveSelItem;
-@property (nonatomic, assign) BOOL fadeTitleColor;
+@property (nonatomic, assign) BOOL gradientTitleColor;
+@property (nonatomic, assign) BOOL gradientTitleFont;
 /** 自定义属性 */
 @property (nonatomic, strong) NSDictionary *otherAttri;
 @end

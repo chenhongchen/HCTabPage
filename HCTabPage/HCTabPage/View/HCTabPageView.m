@@ -69,8 +69,10 @@
     [self setupFrame];
     // reload配置的时候，需要已布局好了，不然界面会出现异常
     [self reloadAfterFristLayout];
-    // 这里用于旋转时适配bar的位置
-    [self.tabPageBar setOffsetX:_curIndex * self.bounds.size.width animaton:YES];
+    
+    // 用于旋转时适配
+    self.pagesScrollView.contentSize = CGSizeMake(_pagesNumber * self.bounds.size.width, 0);
+    self.pagesScrollView.contentOffset = CGPointMake(_curIndex * self.bounds.size.width, 0);
 }
 
 - (void)dealloc
@@ -266,10 +268,16 @@
     self.tabPageBar.realTimeMoveSelItem = _realTimeMoveSelItem;
 }
 
-- (void)setFadeTitleColor:(BOOL)fadeTitleColor
+- (void)setGradientTitleColor:(BOOL)gradientTitleColor
 {
-    _fadeTitleColor = fadeTitleColor;
-    self.tabPageBar.fadeTitleColor = _fadeTitleColor;
+    _gradientTitleColor = gradientTitleColor;
+    self.tabPageBar.gradientTitleColor = _gradientTitleColor;
+}
+
+- (void)setGradientTitleFont:(BOOL)gradientTitleFont
+{
+    _gradientTitleFont = gradientTitleFont;
+    self.tabPageBar.gradientTitleFont = _gradientTitleFont;
 }
 
 - (void)setOtherAttri:(NSDictionary *)otherAttri
@@ -427,8 +435,8 @@
         _didAppearPageControllers = arrayM;
     }
     
-    CGFloat width = self.bounds.size.width;
-    CGFloat height = self.bounds.size.height;
+    CGFloat width = self.pagesScrollView.bounds.size.width;
+    CGFloat height = self.pagesScrollView.bounds.size.height;
     CGFloat x = _nextIndex * width;
     CGFloat y = 0;
     nextPageVc.view.frame = CGRectMake(x, y, width, height);
@@ -460,8 +468,8 @@
         _didAppearPageControllers = arrayM;
     }
     
-    CGFloat width = self.bounds.size.width;
-    CGFloat height = self.bounds.size.height;
+    CGFloat width = self.pagesScrollView.bounds.size.width;
+    CGFloat height = self.pagesScrollView.bounds.size.height;
     CGFloat y = 0;
     CGFloat x = (_curIndex + ((_nextIndex > _curIndex) ? 1 : -1)) * width;
     if (_curIndex == _nextIndex) {

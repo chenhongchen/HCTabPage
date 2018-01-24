@@ -79,6 +79,7 @@
     [super layoutSubviews];
     [self setupOtherViewsFrame];
     [self setupBtnsFrameWithAnimation:NO];
+    [self setupItemsWithPositions:[self positionsForPageOffsetX:_offsetX]  animation:NO];
     [self setupSlideLineFrameWithPositions:[self positionsForPageOffsetX:_offsetX] animation:NO];
     [self scrollToFitForSelItemWithPositions:[self positionsForPageOffsetX:_offsetX] animation:NO];
 }
@@ -163,8 +164,10 @@
 - (void)setSelTitleFont:(UIFont *)selTitleFont
 {
     _selTitleFont = selTitleFont;
-    UIButton *selItem = _items[_selIndex];
-    selItem.titleLabel.font = _selTitleFont;
+    if (!_gradientTitleFont) {
+        UIButton *selItem = _items[_selIndex];
+        selItem.titleLabel.font = _selTitleFont;
+    }
 }
 
 - (void)setTitleColor:(UIColor *)titleColor
@@ -231,6 +234,7 @@
         [UIView animateWithDuration:kTP_AniDuration animations:^{
             UIButton *lastItem = nil;
             for (UIButton *item in _items) {
+                item.transform = CGAffineTransformIdentity;
                 //        item.backgroundColor = [UIColor greenColor];
                 CGFloat x = lastItem ? CGRectGetMaxX(lastItem.frame) + _padding : 0;
                 CGFloat y = 0;
@@ -247,6 +251,7 @@
     else {
         UIButton *lastItem = nil;
         for (UIButton *item in _items) {
+            item.transform = CGAffineTransformIdentity;
             //        item.backgroundColor = [UIColor greenColor];
             CGFloat x = lastItem ? CGRectGetMaxX(lastItem.frame) + _padding : 0;
             CGFloat y = 0;
@@ -275,22 +280,54 @@
     CGFloat selR, selG, selB, selA;
     [_selTitleColor getRed:&selR green:&selG blue:&selB alpha:&selA];
     
-    // 设置lastItem、selItem字体，没有淡入淡出效果时字体颜色
-    if (_selIndex != selIndex || _selIndex == _lastIndex) {
-        _lastIndex = _selIndex;
-        UIButton *lastItem = _items[_lastIndex];
-        lastItem.titleLabel.font = _titleFont;
-        _selIndex = selIndex;
-        UIButton *selItem = _items[_selIndex];
-        selItem.titleLabel.font = _selTitleFont;
-        if (!_fadeTitleColor) {
-            [lastItem setTitleColor:_titleColor forState:UIControlStateNormal];
-            [selItem setTitleColor:_selTitleColor forState:UIControlStateNormal];
+    // 设置lastItem、selItem字体，没有渐变效果时字体颜色
+    if (!_gradientTitleFont) { // 没有渐变效果字体
+        if ((_selIndex != selIndex || _selIndex == _lastIndex) && lRatio == 0) {
+            _lastIndex = _selIndex;
+            UIButton *lastItem = _items[_lastIndex];
+            lastItem.titleLabel.font = _titleFont;
+            _selIndex = selIndex;
+            UIButton *selItem = _items[_selIndex];
+            selItem.titleLabel.font = _selTitleFont;
+            if (!_gradientTitleColor) {
+                [lastItem setTitleColor:_titleColor forState:UIControlStateNormal];
+                [selItem setTitleColor:_selTitleColor forState:UIControlStateNormal];
+            }
+            [self setupBtnsFrameWithAnimation:_hasBtnAnimation && animation];
         }
-        [self setupBtnsFrameWithAnimation:_hasBtnAnimation && animation];
+    }
+    else // 有渐变效果字体
+    {
+        CGFloat selF = _selTitleFont.pointSize;
+        CGFloat norF = _titleFont.pointSize;
+        CGFloat sF = selF - norF;
+        if (lRatio == 0) {
+            _lastIndex = _selIndex;
+            UIButton *lastItem = _items[_lastIndex];
+            _selIndex = selIndex;
+            UIButton *selItem = _items[_selIndex];
+            if (!_gradientTitleColor) {
+                [lastItem setTitleColor:_titleColor forState:UIControlStateNormal];
+                [selItem setTitleColor:_selTitleColor forState:UIControlStateNormal];
+            }
+            lastItem.transform = CGAffineTransformIdentity;
+            CGFloat r = (norF + sF) / norF;
+            selItem.transform = CGAffineTransformMakeScale(r, r);
+        }
+        else
+        {
+            CGFloat lF = (1 - lRatio) * sF;
+            CGFloat rF = lRatio * sF;
+            CGFloat lr = (norF + lF) / norF;
+            CGFloat rr = (norF + rF) / norF;
+            NSLog(@"%f, %f", lr, rr);
+            
+            leftItem.transform = CGAffineTransformMakeScale(lr, lr);
+            rightItem.transform = CGAffineTransformMakeScale(rr, rr);
+        }
     }
     
-    if (!_fadeTitleColor) {
+    if (!_gradientTitleColor) {
         return;
     }
     

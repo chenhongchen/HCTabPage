@@ -33,7 +33,7 @@
         tabPageView.tabPageBarHeight = 44;
         tabPageView.curIndex = 5;
         tabPageView.padding = 20;
-        tabPageView.fadeTitleColor = YES;
+        tabPageView.gradientTitleColor = YES;
         tabPageView.btnHeight = 36;
         tabPageView.realTimeMoveSelItem = NO;
         tabPageView.hasBtnAnimation = NO;
