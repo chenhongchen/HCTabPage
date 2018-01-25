@@ -300,7 +300,7 @@
         if (lRatio == 0) {
             _lastIndex = _selIndex;
             UIButton *lastItem = _items[_lastIndex];
-            lastItem.titleLabel.font = [UIFont systemFontOfSize:_titleFont.pointSize];
+            lastItem.titleLabel.font = _titleFont;
             
             _selIndex = selIndex;
             UIButton *selItem = _items[_selIndex];
@@ -308,17 +308,24 @@
                 [lastItem setTitleColor:_titleColor forState:UIControlStateNormal];
                 [selItem setTitleColor:_selTitleColor forState:UIControlStateNormal];
             }
+            // 设置selItem字体
             NSString *fontUIUsageAttribute = _selTitleFont.fontDescriptor.fontAttributes[@"NSCTFontUIUsageAttribute"];
-            if ([fontUIUsageAttribute isEqualToString:@"CTFontEmphasizedUsage"]) {
+            if ([fontUIUsageAttribute isEqualToString:@"CTFontEmphasizedUsage"]) {// 粗体的情况
                 selItem.titleLabel.font = [UIFont boldSystemFontOfSize:_titleFont.pointSize];
             }
-            else
-            {
+            else if ([fontUIUsageAttribute isEqualToString:@"CTFontRegularUsage"]) {// 常规的情况
                 selItem.titleLabel.font = [UIFont systemFontOfSize:_titleFont.pointSize];
+            }
+            else if (fontUIUsageAttribute.length) {// 其他字体的情况
+                selItem.titleLabel.font = [UIFont fontWithName:fontUIUsageAttribute size:_titleFont.pointSize];
+                if (!selItem.titleLabel.font) {
+                    selItem.titleLabel.font = _titleFont;
+                }
             }
             
             [self setupBtnsFrameWithAnimation:NO];
             
+            // 设置selItem字体放大
             lastItem.transform = CGAffineTransformIdentity;
             CGFloat r = (norF + sF) / norF;
             selItem.transform = CGAffineTransformMakeScale(r, r);
