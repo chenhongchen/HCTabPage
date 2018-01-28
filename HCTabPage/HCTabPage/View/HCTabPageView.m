@@ -377,6 +377,7 @@
         UIViewController *nextPageVc = _pageControllers[_nextIndex];
         // 1.1.换页了
         if (curPageVc.view.frame.origin.x != self.pagesScrollView.contentOffset.x) {
+            _curIndex = _nextIndex;
             NSInteger firstIndex = [_pageControllers indexOfObject:_didAppearPageControllers.firstObject];
             if (firstIndex != _nextIndex && [self.delegate respondsToSelector:@selector(tabPageView:didChangePageToIndex:formIndex:)]) {
                 [self.delegate tabPageView:self didChangePageToIndex:_nextIndex formIndex:firstIndex];
@@ -393,7 +394,6 @@
                 }
             }
             _didAppearPageControllers = arrayM;
-            _curIndex = _nextIndex;
         }
         // 1.2.没换页
         else {
@@ -520,6 +520,7 @@
             self.pagesScrollView.contentOffset = CGPointMake(_nextIndex * width, 0);
             _pagesScrollView.delegate = self;
             
+            _curIndex = _nextIndex;
             NSInteger firstIndex = [_pageControllers indexOfObject:_didAppearPageControllers.firstObject];
             if ([self.delegate respondsToSelector:@selector(tabPageView:didChangePageToIndex:formIndex:)] && index != firstIndex) {
                 [self.delegate tabPageView:self didChangePageToIndex:_nextIndex formIndex:firstIndex];
@@ -536,7 +537,6 @@
                 }
             }
             _didAppearPageControllers = arrayM;
-            _curIndex = _nextIndex;
         }];
     }
 }
