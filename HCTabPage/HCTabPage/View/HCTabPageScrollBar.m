@@ -424,13 +424,13 @@
     CGFloat scrollViewW = self.scrollView.bounds.size.width;
     CGFloat scrollViewW_1_2 = scrollViewW * 0.5;
     UIButton *lastItem = _items.lastObject;
-    CGFloat maxX = CGRectGetMaxX(lastItem.frame);
+    CGFloat maxX = CGRectGetMaxX(lastItem.frame) + _leftMargin + _rightMargin;
     if (animation) {
         [UIView animateWithDuration:kTP_AniDuration animations:^{
-            if (selItemCX < scrollViewW_1_2 || maxX < self.scrollView.bounds.size.width) {
+            if (selItemCX < scrollViewW_1_2 - _leftMargin || maxX < self.scrollView.bounds.size.width) {
                 self.scrollView.contentOffset = CGPointMake(-_leftMargin, 0);
             }
-            else if (scrollViewContentW - selItemCX < scrollViewW_1_2) {
+            else if (scrollViewContentW - selItemCX < scrollViewW_1_2 - _rightMargin) {
                 self.scrollView.contentOffset = CGPointMake(scrollViewContentW - scrollViewW + _rightMargin, 0);
             }
             else {
@@ -440,10 +440,10 @@
     }
     else
     {
-        if (selItemCX < scrollViewW_1_2 || maxX < self.scrollView.bounds.size.width) {
+        if (selItemCX < scrollViewW_1_2 - _leftMargin  || maxX < self.scrollView.bounds.size.width) {
             self.scrollView.contentOffset = CGPointMake(-_leftMargin, 0);
         }
-        else if (scrollViewContentW - selItemCX < scrollViewW_1_2) {
+        else if (scrollViewContentW - selItemCX < scrollViewW_1_2 - _rightMargin) {
             self.scrollView.contentOffset = CGPointMake(scrollViewContentW - scrollViewW + _rightMargin, 0);
         }
         else {
