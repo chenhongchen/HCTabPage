@@ -319,6 +319,9 @@
 {
     UIInterfaceOrientation orientatin = [UIApplication sharedApplication].statusBarOrientation;
     if (_orientation == orientatin) {// 没有旋转才调用这些方法
+        if ([self.delegate respondsToSelector:@selector(tabPageViewDidScroll:)]) {
+            [self.delegate tabPageViewDidScroll:self];
+        }
         [self setupNextAndCurIndex];
         [self setupNextAndCurPageControllerForShow];
         [self.tabPageBar setOffsetX:scrollView.contentOffset.x animaton:YES];
@@ -379,7 +382,7 @@
         if (curPageVc.view.frame.origin.x != self.pagesScrollView.contentOffset.x) {
             _curIndex = _nextIndex;
             NSInteger firstIndex = [_pageControllers indexOfObject:_didAppearPageControllers.firstObject];
-            if (firstIndex != _nextIndex && [self.delegate respondsToSelector:@selector(tabPageView:didChangePageToIndex:formIndex:)]) {
+            if (/*firstIndex != _curIndex &&*/ [self.delegate respondsToSelector:@selector(tabPageView:didChangePageToIndex:formIndex:)]) {
                 [self.delegate tabPageView:self didChangePageToIndex:_nextIndex formIndex:firstIndex];
             }
             
@@ -397,8 +400,10 @@
         }
         // 1.2.没换页
         else {
+            [curPageVc beginAppearanceTransition:YES animated:YES];
+            [curPageVc endAppearanceTransition];
             NSInteger firstIndex = [_pageControllers indexOfObject:_didAppearPageControllers.firstObject];
-            if (firstIndex != _curIndex && [self.delegate respondsToSelector:@selector(tabPageView:didChangePageToIndex:formIndex:)]) {
+            if (/*firstIndex != _curIndex &&*/ [self.delegate respondsToSelector:@selector(tabPageView:didChangePageToIndex:formIndex:)]) {
                 [self.delegate tabPageView:self didChangePageToIndex:_curIndex formIndex:firstIndex];
             }
             

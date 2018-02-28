@@ -22,6 +22,7 @@
 @protocol HCTabPageViewDelegate <NSObject>
 - (void)tabPageView:(HCTabPageView *)tabPageView didSelectTabBarAtIndex:(NSInteger)atIndex fromIndex:(NSInteger)fromIndex;
 - (void)tabPageView:(HCTabPageView *)tabPageView didChangePageToIndex:(NSInteger)toIndex formIndex:(NSInteger)formIndex;
+- (void)tabPageViewDidScroll:(HCTabPageView *)tabPageView;
 @end
 
 @interface HCTabPageView : UIView
