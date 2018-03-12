@@ -556,6 +556,9 @@
     CGFloat width = self.bounds.size.width;
     CGFloat x = 0;
     CGFloat y = _passThrough ? CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) : 0;
+    if (_barY > 0) {
+        y = _barY;
+    }
     self.tabPageBar.frame = CGRectMake(x, y, width, height);
     
     if ([_tabPageHeaderView isKindOfClass:[UIView class]]) {
@@ -572,7 +575,7 @@
     self.barBgView.frame = CGRectMake(x, y, width, height);
     
     x = 0;
-    y = _passThrough ? 0 : CGRectGetMaxY(self.barBgView.frame);
+    y = (_passThrough || _barY > 0) ? 0 : CGRectGetMaxY(self.barBgView.frame);
     width = self.bounds.size.width;
     height = self.bounds.size.height - y;
     self.pagesScrollView.frame = CGRectMake(x, y, width, height);

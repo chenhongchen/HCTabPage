@@ -67,6 +67,8 @@
 @property (nonatomic, assign) BOOL gradientTitleFont;
 /** 穿透效果 */
 @property (nonatomic, assign) BOOL passThrough;
+/** bar离顶部的距离(barY大于0则passThrough效果用barY代替) */
+@property (nonatomic, assign) CGFloat barY;
 /** 自定义属性 */
 @property (nonatomic, strong) NSDictionary *otherAttri;
 @end
