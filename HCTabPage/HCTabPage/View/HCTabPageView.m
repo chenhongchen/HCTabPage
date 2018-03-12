@@ -143,9 +143,6 @@
 {
     // reload配置的时候，需要已布局好了，不然界面会出现异常
     if (_hasFirstLayout) {
-        if (_curIndex < 0) {
-            _curIndex = 0;
-        }
         self.pagesScrollView.delegate = nil;
         [self loadDataSource];
         
@@ -194,6 +191,11 @@
 {
     _curIndex = curIndex;
     _nextIndex = curIndex;
+}
+
+- (NSArray *)childControllers
+{
+    return _pageControllers;
 }
 
 #pragma mark - tabPageBar 属性设置
@@ -359,6 +361,8 @@
 
 - (void)clearSourceData
 {
+    _curIndex = 0;
+    _nextIndex = 0;
     _pagesNumber = 0;
     for (UIViewController *pageVc in _pageControllers) {
         [pageVc.view removeFromSuperview];

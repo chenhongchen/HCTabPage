@@ -31,6 +31,8 @@
 @property (nonatomic, weak) UIView *tabPageHeaderView;
 /** 所在的控制器, 如不传会自动获取 */
 @property (nonatomic, weak) UIViewController *ownVC;
+/** 所有子控制器 */
+@property (nonatomic, strong, readonly) NSArray *childControllers;
 /** 当前页索引 */
 @property (nonatomic, assign) NSInteger curIndex;
 

@@ -218,7 +218,7 @@
     else {
         CGFloat h = selfHeight - _botLineHeight;
         CGFloat centerX = h * 0.5;
-        CGFloat y = centerX - _btnHeight * 0.5;
+        CGFloat y = ceil(centerX - _btnHeight * 0.5);
         self.scrollView.frame = CGRectMake(0, y, selfWidth, _btnHeight);
     }
     self.botLine.frame = CGRectMake(0, self.bounds.size.height - _botLineHeight, self.bounds.size.width, _botLineHeight);
@@ -232,7 +232,7 @@
             for (UIButton *item in _items) {
                 item.transform = CGAffineTransformIdentity;
                 //        item.backgroundColor = [UIColor greenColor];
-                CGFloat x = lastItem ? CGRectGetMaxX(lastItem.frame) + _padding : 0;
+                CGFloat x = ceil(lastItem ? CGRectGetMaxX(lastItem.frame) + _padding : 0);
                 CGFloat y = 0;
                 CGFloat height = self.scrollView.bounds.size.height;
                 
@@ -249,7 +249,7 @@
         for (UIButton *item in _items) {
             item.transform = CGAffineTransformIdentity;
             //        item.backgroundColor = [UIColor greenColor];
-            CGFloat x = lastItem ? CGRectGetMaxX(lastItem.frame) + _padding : 0;
+            CGFloat x = ceil(lastItem ? CGRectGetMaxX(lastItem.frame) + _padding : 0);
             CGFloat y = 0;
             CGFloat height = self.scrollView.bounds.size.height;
             
