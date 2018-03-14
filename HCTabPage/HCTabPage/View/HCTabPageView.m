@@ -62,6 +62,7 @@
         }
         _tabPageBarHeight = 40;
         self.bgColor = [UIColor whiteColor];
+        self.bounces = YES;
     }
     return self;
 }
@@ -78,6 +79,8 @@
     [self setupFrame];
     // reload配置的时候，需要已布局好了，不然界面会出现异常
     [self reloadAfterFristLayout];
+    
+    self.pagesScrollView.bounces = _bounces;
     
     // 用于旋转时适配
     self.pagesScrollView.contentSize = CGSizeMake(_pagesNumber * self.bounds.size.width, 0);
@@ -365,7 +368,9 @@
     _nextIndex = 0;
     _pagesNumber = 0;
     for (UIViewController *pageVc in _pageControllers) {
-        [pageVc.view removeFromSuperview];
+        if (pageVc.isViewLoaded) {
+            [pageVc.view removeFromSuperview];
+        }
         [pageVc removeFromParentViewController];
     }
     _pageControllers = nil;
