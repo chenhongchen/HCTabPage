@@ -186,8 +186,8 @@
         [_tabPageHeaderView removeFromSuperview];
         [self addSubview:tabPageHeaderView];
         _tabPageHeaderView = tabPageHeaderView;
-        [self setupFrame];
     }
+    [self setupFrame];
 }
 
 - (void)setCurIndex:(NSInteger)curIndex
