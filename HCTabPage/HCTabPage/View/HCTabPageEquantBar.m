@@ -99,11 +99,6 @@
     [self setOffsetX:_offsetX animaton:animation];
 }
 
-- (void)setBgColor:(UIColor *)bgColor
-{
-    _bgColor = bgColor;
-}
-
 - (void)setSlideLineColor:(UIColor *)slideLineColor
 {
     _slideLineColor = slideLineColor;

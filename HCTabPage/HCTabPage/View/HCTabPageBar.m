@@ -17,7 +17,6 @@
 {
     if (self = [super initWithFrame:frame]) {
         self.hasBtnAnimation = YES;
-        self.bgColor = [UIColor whiteColor];
         self.titleFont = [UIFont systemFontOfSize:15];
         self.selTitleFont = [UIFont systemFontOfSize:17];
         self.titleColor = kTP_Color(55, 55, 55, 1);
@@ -42,6 +41,12 @@
 
 - (void)selectTabAtIndex:(NSInteger)selIndex animation:(BOOL)animation
 {
+}
+
+- (void)setBgColor:(UIColor *)bgColor
+{
+    _bgColor = bgColor;
+    self.backgroundColor = _bgColor;
 }
 
 /** pageOffset转换成index */

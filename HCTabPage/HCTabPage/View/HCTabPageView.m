@@ -86,11 +86,15 @@
     
     self.pagesScrollView.bounces = _bounces;
     self.pagesScrollView.scrollEnabled = _scrollEnabled;
+    
     // 用于旋转时适配
-    self.pagesScrollView.contentSize = CGSizeMake(_pagesNumber * self.bounds.size.width, 0);
-    self.pagesScrollView.contentOffset = CGPointMake(_curIndex * self.bounds.size.width, 0);
-    _orientation = [UIApplication sharedApplication].statusBarOrientation;
-    [self scrollViewDidScroll:self.pagesScrollView];
+    UIInterfaceOrientation orientatin = [UIApplication sharedApplication].statusBarOrientation;
+    if (_orientation != orientatin) {
+        self.pagesScrollView.contentSize = CGSizeMake(_pagesNumber * self.bounds.size.width, 0);
+        self.pagesScrollView.contentOffset = CGPointMake(_curIndex * self.bounds.size.width, 0);
+        _orientation = [UIApplication sharedApplication].statusBarOrientation;
+        [self scrollViewDidScroll:self.pagesScrollView];
+    }
 }
 
 - (void)dealloc
@@ -279,8 +283,13 @@
 - (void)setBgColor:(UIColor *)bgColor
 {
     _bgColor = bgColor;
-    self.tabPageBar.bgColor = _bgColor;
     self.barBgView.backgroundColor = _bgColor;
+}
+
+- (void)setBarBgColor:(UIColor *)barBgColor
+{
+    _barBgColor = barBgColor;
+    self.tabPageBar.bgColor = _barBgColor;
 }
 
 - (void)setSlideLineColor:(UIColor *)slideLineColor
@@ -552,6 +561,7 @@
     }
     else
     {
+        _curIndex = _nextIndex;
         nextPageVc.view.frame = CGRectMake(x, y, width, height);
         _pagesScrollView.delegate = nil;
         [UIView animateWithDuration:(animation ? kTP_AniDuration : 0) animations:^{
@@ -562,7 +572,6 @@
             self.pagesScrollView.contentOffset = CGPointMake(_nextIndex * width, 0);
             _pagesScrollView.delegate = self;
             
-            _curIndex = _nextIndex;
             NSInteger firstIndex = [_pageControllers indexOfObject:_didAppearPageControllers.firstObject];
             if ([self.delegate respondsToSelector:@selector(tabPageView:didChangePageToIndex:fromIndex:)] && index != firstIndex) {
                 [self.delegate tabPageView:self didChangePageToIndex:_nextIndex fromIndex:firstIndex];

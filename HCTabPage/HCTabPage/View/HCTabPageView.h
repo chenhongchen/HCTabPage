@@ -61,6 +61,7 @@
 @property (nonatomic, strong) UIColor *titleColor;
 @property (nonatomic, strong) UIColor *selTitleColor;
 @property (nonatomic, strong) UIColor *bgColor;
+@property (nonatomic, strong) UIColor *barBgColor;
 @property (nonatomic, strong) UIColor *slideLineColor;
 @property (nonatomic, assign) CGFloat slideLineHeight;
 @property (nonatomic, strong) UIColor *botLineColor;

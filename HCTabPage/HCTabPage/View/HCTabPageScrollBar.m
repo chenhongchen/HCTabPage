@@ -115,11 +115,6 @@
     self.scrollView.contentInset = UIEdgeInsetsMake(0, _leftMargin, 0, _rightMargin);
 }
 
-- (void)setBgColor:(UIColor *)bgColor
-{
-    _bgColor = bgColor;
-}
-
 - (void)setSlideLineColor:(UIColor *)slideLineColor
 {
     _slideLineColor = slideLineColor;
