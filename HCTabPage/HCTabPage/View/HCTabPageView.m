@@ -212,9 +212,6 @@
 - (void)refreshFrame
 {
     [self setupFrame];
-    [self setupNextAndCurIndex];
-    [self setupNextAndCurPageControllerForShow];
-    [self.tabPageBar setOffsetX:self.pagesScrollView.contentOffset.x animaton:NO];
 }
 
 #pragma mark - tabPageBar 属性设置
@@ -371,6 +368,11 @@
     if ([self.delegate respondsToSelector:@selector(tabPageView:didSelectTabBarAtIndex:fromIndex:)]) {
         [self.delegate tabPageView:self didSelectTabBarAtIndex:atIndex fromIndex:fromIndex];
     }
+    
+    if ([self.delegate respondsToSelector:@selector(tabPageView:willChangePageToIndex:fromIndex:)] && atIndex != fromIndex) {
+        [self.delegate tabPageView:self willChangePageToIndex:atIndex fromIndex:fromIndex];
+    }
+    
     [self selectPageAtIndex:atIndex animation:animation];
 }
 

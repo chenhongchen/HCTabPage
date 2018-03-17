@@ -124,12 +124,6 @@
 - (void)tabPageView:(HCTabPageView *)tabPageView didSelectTabBarAtIndex:(NSInteger)atIndex fromIndex:(NSInteger)fromIndex
 {
     NSLog(@"didSelectTabBarAtIndex: %ld fromIndex: %ld, curIndex: %ld", atIndex, fromIndex, self.tabPageView.curIndex);
-    if (fromIndex != atIndex) {
-        PageTableViewController *fromVc = self.tabPageView.childControllers[fromIndex];
-        fromVc.delegate = nil;
-        PageTableViewController *toVc = self.tabPageView.childControllers[atIndex];
-        [toVc setupOffsetY:_curOffSetY];
-    }
 }
 
 - (void)tabPageView:(HCTabPageView *)tabPageView willChangePageToIndex:(NSInteger)toIndex fromIndex:(NSInteger)fromIndex
@@ -162,7 +156,7 @@
     _curOffSetY = offsetY;
     CGFloat sy = ((self.offsetY + 44) + offsetY);
     
-    NSLog(@"offsetY = %f, sy = %f, min = %f", offsetY, sy, CGFLOAT_MIN);
+//    NSLog(@"offsetY = %f, sy = %f, min = %f", offsetY, sy, CGFLOAT_MIN);
     
     if (sy >= 0) {
         self.tabPageView.barY = self.offsetY - sy;
