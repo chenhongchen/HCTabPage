@@ -84,8 +84,8 @@
 {
     _lastIndex = _selIndex;
     _selIndex = segment.selectedSegmentIndex;
-    if ([self.delegate respondsToSelector:@selector(tabPageBar:didSelectItemAtIndex:fromIndex:)]) {
-        [self.delegate tabPageBar:self didSelectItemAtIndex:_selIndex fromIndex:_lastIndex];
+    if ([self.delegate respondsToSelector:@selector(tabPageBar:didSelectItemAtIndex:fromIndex:animation:)]) {
+        [self.delegate tabPageBar:self didSelectItemAtIndex:_selIndex fromIndex:_lastIndex animation:YES];
     }
 }
 @end

@@ -159,10 +159,10 @@
     NSLog(@"didSelectTabBarAtIndex: %ld fromIndex: %ld, curIndex: %ld", atIndex, fromIndex, self.tabPageView.curIndex);
 }
 
-- (void)tabPageView:(HCTabPageView *)tabPageView didChangePageToIndex:(NSInteger)toIndex formIndex:(NSInteger)formIndex
+- (void)tabPageView:(HCTabPageView *)tabPageView didChangePageToIndex:(NSInteger)toIndex fromIndex:(NSInteger)fromIndex
 {
 //    self.tabPageHeaderView.backgroundColor = [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1.0];
-    NSLog(@"didChangePageToIndex: %ld fromIndex: %ld, curIndex: %ld", toIndex, formIndex, self.tabPageView.curIndex);
+    NSLog(@"didChangePageToIndex: %ld fromIndex: %ld, curIndex: %ld", toIndex, fromIndex, self.tabPageView.curIndex);
 }
 
 #pragma mark - 事件

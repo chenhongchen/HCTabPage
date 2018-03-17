@@ -36,6 +36,9 @@
 @property (nonatomic, assign) BOOL hasFirstLayout;
 
 @property (nonatomic, assign) UIInterfaceOrientation orientation;
+
+/** 用于判断是否横滑了 */
+@property (nonatomic, assign) CGFloat lastOffsetX;
 @end
 
 @implementation HCTabPageView
@@ -63,6 +66,7 @@
         _tabPageBarHeight = 40;
         self.bgColor = [UIColor whiteColor];
         self.bounces = YES;
+        self.scrollEnabled = YES;
     }
     return self;
 }
@@ -81,7 +85,7 @@
     [self reloadAfterFristLayout];
     
     self.pagesScrollView.bounces = _bounces;
-    
+    self.pagesScrollView.scrollEnabled = _scrollEnabled;
     // 用于旋转时适配
     self.pagesScrollView.contentSize = CGSizeMake(_pagesNumber * self.bounds.size.width, 0);
     self.pagesScrollView.contentOffset = CGPointMake(_curIndex * self.bounds.size.width, 0);
@@ -199,6 +203,14 @@
 - (NSArray *)childControllers
 {
     return _pageControllers;
+}
+
+- (void)refreshFrame
+{
+    [self setupFrame];
+    [self setupNextAndCurIndex];
+    [self setupNextAndCurPageControllerForShow];
+    [self.tabPageBar setOffsetX:self.pagesScrollView.contentOffset.x animaton:NO];
 }
 
 #pragma mark - tabPageBar 属性设置
@@ -345,12 +357,12 @@
 //}
 
 #pragma mark - HCTabPageBarDelegate
-- (void)tabPageBar:(HCTabPageBar *)tabPageBar didSelectItemAtIndex:(NSInteger)atIndex fromIndex:(NSInteger)fromIndex
+- (void)tabPageBar:(HCTabPageBar *)tabPageBar didSelectItemAtIndex:(NSInteger)atIndex fromIndex:(NSInteger)fromIndex animation:(BOOL)animation
 {
     if ([self.delegate respondsToSelector:@selector(tabPageView:didSelectTabBarAtIndex:fromIndex:)]) {
         [self.delegate tabPageView:self didSelectTabBarAtIndex:atIndex fromIndex:fromIndex];
     }
-    [self selectPageAtIndex:atIndex animation:YES];
+    [self selectPageAtIndex:atIndex animation:animation];
 }
 
 #pragma mark - 内部方法
@@ -382,6 +394,10 @@
 /** 滑动时设置下一页索引和当前页索引、滑动停止时disappear其他已显示的页 */
 - (void)setupNextAndCurIndex
 {
+    if (self.lastOffsetX == self.pagesScrollView.contentOffset.x) { //  不是横向滑动则直接返回
+        return;
+    }
+    _lastOffsetX = self.pagesScrollView.contentOffset.x;
     CGFloat offset = self.pagesScrollView.contentOffset.x / self.bounds.size.width;
     // 1.滑动停止
     if (offset == floor(offset)) {
@@ -391,8 +407,8 @@
         if (curPageVc.view.frame.origin.x != self.pagesScrollView.contentOffset.x) {
             _curIndex = _nextIndex;
             NSInteger firstIndex = [_pageControllers indexOfObject:_didAppearPageControllers.firstObject];
-            if (/*firstIndex != _curIndex &&*/ [self.delegate respondsToSelector:@selector(tabPageView:didChangePageToIndex:formIndex:)]) {
-                [self.delegate tabPageView:self didChangePageToIndex:_nextIndex formIndex:firstIndex];
+            if (/*firstIndex != _curIndex &&*/ [self.delegate respondsToSelector:@selector(tabPageView:didChangePageToIndex:fromIndex:)]) {
+                [self.delegate tabPageView:self didChangePageToIndex:_nextIndex fromIndex:firstIndex];
             }
             
             // disappear所有未在当前显示的页
@@ -412,8 +428,8 @@
             [curPageVc beginAppearanceTransition:YES animated:YES];
             [curPageVc endAppearanceTransition];
             NSInteger firstIndex = [_pageControllers indexOfObject:_didAppearPageControllers.firstObject];
-            if (/*firstIndex != _curIndex &&*/ [self.delegate respondsToSelector:@selector(tabPageView:didChangePageToIndex:formIndex:)]) {
-                [self.delegate tabPageView:self didChangePageToIndex:_curIndex formIndex:firstIndex];
+            if (/*firstIndex != _curIndex &&*/ [self.delegate respondsToSelector:@selector(tabPageView:didChangePageToIndex:fromIndex:)]) {
+                [self.delegate tabPageView:self didChangePageToIndex:_curIndex fromIndex:firstIndex];
             }
             
             // disappear所有未在当前显示的页
@@ -432,6 +448,12 @@
     }
     // 2.向右滑
     else if (_curIndex - offset > 0.003) {
+        NSInteger toIndex = floor(offset) < 0 ? 0 : floor(offset);
+        if (_nextIndex != toIndex) {
+            if ([self.delegate respondsToSelector:@selector(tabPageView:willChangePageToIndex:fromIndex:)]) {
+                [self.delegate tabPageView:self willChangePageToIndex:toIndex fromIndex:_curIndex];
+            }
+        }
         _nextIndex = floor(offset);
         _nextIndex = MAX(0, floor(offset));
         _curIndex = _nextIndex + 1;
@@ -441,6 +463,12 @@
     }
     // 3.向左滑
     else if (offset - _curIndex > 0.003) {
+        NSInteger toIndex = ceil(offset) > _pagesNumber - 1 ? _pagesNumber - 1 : ceil(offset);
+        if (_nextIndex != toIndex) {
+            if ([self.delegate respondsToSelector:@selector(tabPageView:willChangePageToIndex:fromIndex:)]) {
+                [self.delegate tabPageView:self willChangePageToIndex:toIndex fromIndex:_curIndex];
+            }
+        }
         _nextIndex = ceil(offset);
         _nextIndex = MIN(ceil(offset), _pagesNumber - 1);
         _curIndex = _nextIndex - 1;
@@ -536,8 +564,8 @@
             
             _curIndex = _nextIndex;
             NSInteger firstIndex = [_pageControllers indexOfObject:_didAppearPageControllers.firstObject];
-            if ([self.delegate respondsToSelector:@selector(tabPageView:didChangePageToIndex:formIndex:)] && index != firstIndex) {
-                [self.delegate tabPageView:self didChangePageToIndex:_nextIndex formIndex:firstIndex];
+            if ([self.delegate respondsToSelector:@selector(tabPageView:didChangePageToIndex:fromIndex:)] && index != firstIndex) {
+                [self.delegate tabPageView:self didChangePageToIndex:_nextIndex fromIndex:firstIndex];
             }
             
             // disappear所有未在当前显示的页
@@ -584,7 +612,7 @@
     width = self.bounds.size.width;
     height = self.bounds.size.height - y;
     self.pagesScrollView.frame = CGRectMake(x, y, width, height);
-    [self sendSubviewToBack:self.barBgView];
+    [self bringSubviewToFront:self.tabPageBar];
     [self sendSubviewToBack:self.pagesScrollView];
 }
 

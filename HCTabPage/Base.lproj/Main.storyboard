@@ -9,25 +9,41 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--VC_View-->
-        <scene sceneID="4c0-PV-BZN">
+        <!--Equant Bar Controller-->
+        <scene sceneID="rI5-0n-BKw">
             <objects>
-                <viewController id="vql-bM-MbG" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="9Wz-bs-J89" customClass="KTEquantBarController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="NtB-Uf-zBM"/>
-                        <viewControllerLayoutGuide type="bottom" id="4eY-8e-2eK"/>
+                        <viewControllerLayoutGuide type="top" id="IbT-BV-oJn"/>
+                        <viewControllerLayoutGuide type="bottom" id="fLa-VK-ReK"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="nus-W9-MDD">
+                    <view key="view" contentMode="scaleToFill" id="lZe-0K-QvE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="VC_View" id="XbR-G8-EUO"/>
-                    <navigationItem key="navigationItem" id="9XG-s9-huD"/>
+                    <navigationItem key="navigationItem" id="BYy-hH-w8r"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IEd-Tr-Q6N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yAy-re-2p1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-386" y="2295"/>
+            <point key="canvasLocation" x="398" y="2336"/>
+        </scene>
+        <!--EquantBar-->
+        <scene sceneID="ngr-rC-baJ">
+            <objects>
+                <navigationController id="jny-2g-ART" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="EquantBar" id="4sU-vb-IhY"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wpd-eb-4vy">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="9Wz-bs-J89" kind="relationship" relationship="rootViewController" id="Cqa-7i-TLG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Wn-Wa-9GS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-386" y="2336"/>
         </scene>
         <!--SegmBar-->
         <scene sceneID="uVB-Ay-x1M">
@@ -82,11 +98,11 @@
             </objects>
             <point key="canvasLocation" x="-386" y="1576"/>
         </scene>
-        <!--Item-->
+        <!--ScrollSLJumpBar-->
         <scene sceneID="kIR-Zq-HxL">
             <objects>
                 <navigationController id="FPg-QA-44Q" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="dGA-3c-tPJ"/>
+                    <tabBarItem key="tabBarItem" title="ScrollSLJumpBar" id="dGA-3c-tPJ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0Nx-0M-3wZ">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -151,7 +167,7 @@
                         <segue destination="FPg-QA-44Q" kind="relationship" relationship="viewControllers" id="BIO-T0-WKW"/>
                         <segue destination="SSt-rZ-x1E" kind="relationship" relationship="viewControllers" id="qUh-lH-cRa"/>
                         <segue destination="bHl-dl-mZo" kind="relationship" relationship="viewControllers" id="Dna-6c-WFh"/>
-                        <segue destination="vql-bM-MbG" kind="relationship" relationship="viewControllers" id="EJJ-2B-MsB"/>
+                        <segue destination="jny-2g-ART" kind="relationship" relationship="viewControllers" id="bmn-cs-hF3"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="amI-pB-9pk" userLabel="First Responder" sceneMemberID="firstResponder"/>

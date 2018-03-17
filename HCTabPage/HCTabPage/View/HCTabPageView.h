@@ -20,8 +20,10 @@
 @end
 
 @protocol HCTabPageViewDelegate <NSObject>
+@optional
 - (void)tabPageView:(HCTabPageView *)tabPageView didSelectTabBarAtIndex:(NSInteger)atIndex fromIndex:(NSInteger)fromIndex;
-- (void)tabPageView:(HCTabPageView *)tabPageView didChangePageToIndex:(NSInteger)toIndex formIndex:(NSInteger)formIndex;
+- (void)tabPageView:(HCTabPageView *)tabPageView willChangePageToIndex:(NSInteger)toIndex fromIndex:(NSInteger)fromIndex;
+- (void)tabPageView:(HCTabPageView *)tabPageView didChangePageToIndex:(NSInteger)toIndex fromIndex:(NSInteger)fromIndex;
 - (void)tabPageViewDidScroll:(HCTabPageView *)tabPageView;
 @end
 
@@ -30,6 +32,7 @@
 @property (nonatomic, weak) id <HCTabPageViewDelegate> delegate;
 @property (nonatomic, weak) UIView *tabPageHeaderView;
 @property (nonatomic, assign) BOOL bounces;
+@property (nonatomic, assign) BOOL scrollEnabled;
 /** 所在的控制器, 如不传会自动获取 */
 @property (nonatomic, weak) UIViewController *ownVC;
 /** 所有子控制器 */
@@ -41,6 +44,8 @@
 + (instancetype)tabPageViewWithBarStyle:(NSString *)barStyle;
 - (void)reload;
 - (void)setPageAtIndex:(NSInteger)index animation:(BOOL)animation;
+
+- (void)refreshFrame;
 
 /** tabPageBar 属性设置*/
 @property (nonatomic, assign) CGFloat tabPageBarHeight;
@@ -60,6 +65,8 @@
 @property (nonatomic, assign) CGFloat slideLineHeight;
 @property (nonatomic, strong) UIColor *botLineColor;
 @property (nonatomic, assign) CGFloat botLineHeight;
+@property (nonatomic, assign) CGSize vLineSize;
+@property (nonatomic, strong) UIColor *vLineColor;
 /** 只要selIndex变化，则移动对应的Item到显示位置 */
 @property (nonatomic, assign) BOOL realTimeMoveSelItem;
 /** 颜色渐变 */

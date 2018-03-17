@@ -10,6 +10,7 @@ UIKIT_EXTERN NSString *const TabPageScrollBar;
 UIKIT_EXTERN NSString *const TabPageScrollSLJumpBar;
 UIKIT_EXTERN NSString *const TabPageSegmBar;
 UIKIT_EXTERN NSString *const TabPageSegmNaviBar;
+UIKIT_EXTERN NSString *const TabPageEquantBar;
 
 #define kTP_IOS11 ([[[UIDevice currentDevice]systemVersion] floatValue] >= 11.0)
 #define kTP_Color(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]

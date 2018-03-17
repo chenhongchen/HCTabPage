@@ -26,8 +26,15 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
-    if (self.navigationController.childViewControllers.count <= 1 && [self.parentViewController isKindOfClass:[ScrollBarController class]]) {
-        self.tableView.contentInset = UIEdgeInsetsMake(88 + CGRectGetHeight([UIApplication sharedApplication].statusBarFrame), 0, 0, 0);
+    if (self.navigationController.childViewControllers.count <= 1) {
+        if ([self.parentViewController isKindOfClass:[ScrollBarController class]]) {
+            self.tableView.contentInset = UIEdgeInsetsMake(88 + CGRectGetHeight([UIApplication sharedApplication].statusBarFrame), 0, 0, 0);
+            self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
+        }
+        else if (_offsetY > 0) {
+            self.tableView.contentInset = UIEdgeInsetsMake(_offsetY, 0, 0, 0);
+            self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
+        }
     }
 }
 
@@ -36,6 +43,10 @@
     [super viewDidLayoutSubviews];
     if (self.navigationController.childViewControllers.count <= 1 && [self.parentViewController isKindOfClass:[ScrollBarController class]]) {
         self.tableView.contentInset = UIEdgeInsetsMake(88 + CGRectGetHeight([UIApplication sharedApplication].statusBarFrame), 0, 0, 0);
+    }
+    if (_offsetY > 0) {
+        self.tableView.contentInset = UIEdgeInsetsMake(_offsetY, 0, 0, 0);
+        self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     }
 }
 
@@ -61,6 +72,27 @@
 {
     [super viewDidDisappear:animated];
     NSLog(@"viewDidDisappear - %@", self.text);
+}
+
+#pragma mark - 外部方法
+- (void)setupOffsetY:(CGFloat)offsetY
+{
+    CGFloat topH = CGRectGetHeight([UIApplication sharedApplication].statusBarFrame) + 88;
+    if (self.tableView.contentSize.height < self.tableView.bounds.size.height - topH) {
+        self.tableView.contentSize = CGSizeMake(0, self.tableView.bounds.size.height - topH);
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(CGFLOAT_MIN * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (offsetY >= -topH) {
+            if (self.tableView.contentOffset.y < - topH) {
+                [self.tableView setContentOffset:CGPointMake(0, -topH) animated:NO];
+            }
+        }
+        else
+        {
+            [self.tableView setContentOffset:CGPointMake(0, offsetY) animated:NO];
+        }
+        [self scrollViewDidScroll:self.tableView];
+    });
 }
 
 #pragma mark - tableView Delegate
@@ -89,6 +121,14 @@
 {
     ScrollBarController *vc = [[self.detineClass alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if ([self.delegate respondsToSelector:@selector(pageTableViewController:didScrollForScrollView:)]) {
+        [self.delegate pageTableViewController:self didScrollForScrollView:scrollView];
+    }
 }
 
 @end

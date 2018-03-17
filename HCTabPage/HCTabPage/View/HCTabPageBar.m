@@ -30,6 +30,8 @@
         self.botLineColor = kTP_Color(248, 248, 248, 1);
         self.botLineHeight = 1;
         self.realTimeMoveSelItem = YES;
+        self.vLineSize = CGSizeMake(1, 21);
+        self.vLineColor = kTP_Color(224, 224, 224, 1);
     }
     return self;
 }

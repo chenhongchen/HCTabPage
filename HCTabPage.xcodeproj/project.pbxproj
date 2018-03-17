@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA480217205B557500E146DC /* HCTabPageEquantBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA480216205B557500E146DC /* HCTabPageEquantBar.m */; };
+		EA48021D205B67A200E146DC /* KTEquantBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA48021C205B67A200E146DC /* KTEquantBarController.m */; };
 		EA6B2C261FF5F50700D4F635 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6B2C251FF5F50700D4F635 /* AppDelegate.m */; };
-		EA6B2C291FF5F50700D4F635 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6B2C281FF5F50700D4F635 /* ViewController.m */; };
 		EA6B2C2C1FF5F50700D4F635 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA6B2C2A1FF5F50700D4F635 /* Main.storyboard */; };
 		EA6B2C2E1FF5F50700D4F635 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA6B2C2D1FF5F50700D4F635 /* Assets.xcassets */; };
 		EA6B2C311FF5F50700D4F635 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA6B2C2F1FF5F50700D4F635 /* LaunchScreen.storyboard */; };
@@ -25,7 +26,6 @@
 		EA6B2C701FF5F54300D4F635 /* HCTabPageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6B2C681FF5F54300D4F635 /* HCTabPageTool.m */; };
 		EA6B2C7D1FF6033700D4F635 /* SegmNaviBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6B2C731FF6033600D4F635 /* SegmNaviBarController.m */; };
 		EA6B2C7E1FF6033700D4F635 /* PageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6B2C751FF6033600D4F635 /* PageTableViewController.m */; };
-		EA6B2C7F1FF6033700D4F635 /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6B2C761FF6033600D4F635 /* PageViewController.m */; };
 		EA6B2C801FF6033700D4F635 /* ScrollBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6B2C771FF6033600D4F635 /* ScrollBarController.m */; };
 		EA6B2C811FF6033700D4F635 /* ScrollSLJumpBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6B2C781FF6033700D4F635 /* ScrollSLJumpBarController.m */; };
 		EA6B2C821FF6033700D4F635 /* SegmBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6B2C791FF6033700D4F635 /* SegmBarController.m */; };
@@ -49,11 +49,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EA480215205B557500E146DC /* HCTabPageEquantBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCTabPageEquantBar.h; sourceTree = "<group>"; };
+		EA480216205B557500E146DC /* HCTabPageEquantBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HCTabPageEquantBar.m; sourceTree = "<group>"; };
+		EA48021B205B67A200E146DC /* KTEquantBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KTEquantBarController.h; sourceTree = "<group>"; };
+		EA48021C205B67A200E146DC /* KTEquantBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KTEquantBarController.m; sourceTree = "<group>"; };
 		EA6B2C211FF5F50700D4F635 /* HCTabPage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HCTabPage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA6B2C241FF5F50700D4F635 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EA6B2C251FF5F50700D4F635 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		EA6B2C271FF5F50700D4F635 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		EA6B2C281FF5F50700D4F635 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		EA6B2C2B1FF5F50700D4F635 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EA6B2C2D1FF5F50700D4F635 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA6B2C301FF5F50700D4F635 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -83,11 +85,9 @@
 		EA6B2C671FF5F54300D4F635 /* HCTabPageConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTabPageConst.m; sourceTree = "<group>"; };
 		EA6B2C681FF5F54300D4F635 /* HCTabPageTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTabPageTool.m; sourceTree = "<group>"; };
 		EA6B2C711FF6033500D4F635 /* ScrollSLJumpBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollSLJumpBarController.h; sourceTree = "<group>"; };
-		EA6B2C721FF6033600D4F635 /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
 		EA6B2C731FF6033600D4F635 /* SegmNaviBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmNaviBarController.m; sourceTree = "<group>"; };
 		EA6B2C741FF6033600D4F635 /* PageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageTableViewController.h; sourceTree = "<group>"; };
 		EA6B2C751FF6033600D4F635 /* PageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageTableViewController.m; sourceTree = "<group>"; };
-		EA6B2C761FF6033600D4F635 /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
 		EA6B2C771FF6033600D4F635 /* ScrollBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollBarController.m; sourceTree = "<group>"; };
 		EA6B2C781FF6033700D4F635 /* ScrollSLJumpBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollSLJumpBarController.m; sourceTree = "<group>"; };
 		EA6B2C791FF6033700D4F635 /* SegmBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmBarController.m; sourceTree = "<group>"; };
@@ -147,12 +147,8 @@
 				EA6B2C561FF5F54300D4F635 /* HCTabPage */,
 				EA6B2C241FF5F50700D4F635 /* AppDelegate.h */,
 				EA6B2C251FF5F50700D4F635 /* AppDelegate.m */,
-				EA6B2C271FF5F50700D4F635 /* ViewController.h */,
-				EA6B2C281FF5F50700D4F635 /* ViewController.m */,
 				EA6B2C741FF6033600D4F635 /* PageTableViewController.h */,
 				EA6B2C751FF6033600D4F635 /* PageTableViewController.m */,
-				EA6B2C721FF6033600D4F635 /* PageViewController.h */,
-				EA6B2C761FF6033600D4F635 /* PageViewController.m */,
 				EA6B2C7C1FF6033700D4F635 /* ScrollBarController.h */,
 				EA6B2C771FF6033600D4F635 /* ScrollBarController.m */,
 				EA6B2C711FF6033500D4F635 /* ScrollSLJumpBarController.h */,
@@ -161,6 +157,8 @@
 				EA6B2C791FF6033700D4F635 /* SegmBarController.m */,
 				EA6B2C7B1FF6033700D4F635 /* SegmNaviBarController.h */,
 				EA6B2C731FF6033600D4F635 /* SegmNaviBarController.m */,
+				EA48021B205B67A200E146DC /* KTEquantBarController.h */,
+				EA48021C205B67A200E146DC /* KTEquantBarController.m */,
 				EA6B2C2A1FF5F50700D4F635 /* Main.storyboard */,
 				EA6B2C2D1FF5F50700D4F635 /* Assets.xcassets */,
 				EA6B2C2F1FF5F50700D4F635 /* LaunchScreen.storyboard */,
@@ -216,6 +214,8 @@
 				EA6B2C5D1FF5F54300D4F635 /* HCTabPageSegmBar.m */,
 				EA6B2C611FF5F54300D4F635 /* HCTabPageSegmNaviBar.h */,
 				EA6B2C5A1FF5F54300D4F635 /* HCTabPageSegmNaviBar.m */,
+				EA480215205B557500E146DC /* HCTabPageEquantBar.h */,
+				EA480216205B557500E146DC /* HCTabPageEquantBar.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -360,16 +360,16 @@
 				EA6B2C6B1FF5F54300D4F635 /* HCTabPageSegmBar.m in Sources */,
 				EA6B2C701FF5F54300D4F635 /* HCTabPageTool.m in Sources */,
 				EA6B2C7E1FF6033700D4F635 /* PageTableViewController.m in Sources */,
-				EA6B2C291FF5F50700D4F635 /* ViewController.m in Sources */,
 				EA6B2C7D1FF6033700D4F635 /* SegmNaviBarController.m in Sources */,
+				EA48021D205B67A200E146DC /* KTEquantBarController.m in Sources */,
 				EA6B2C801FF6033700D4F635 /* ScrollBarController.m in Sources */,
 				EA6B2C6D1FF5F54300D4F635 /* HCTabPageScrollSLJumpBar.m in Sources */,
 				EA6B2C6F1FF5F54300D4F635 /* HCTabPageConst.m in Sources */,
 				EA6B2C341FF5F50700D4F635 /* main.m in Sources */,
 				EA6B2C261FF5F50700D4F635 /* AppDelegate.m in Sources */,
 				EA6B2C6E1FF5F54300D4F635 /* HCTabPageScrollBar.m in Sources */,
+				EA480217205B557500E146DC /* HCTabPageEquantBar.m in Sources */,
 				EA6B2C691FF5F54300D4F635 /* HCTabPageSegmNaviBar.m in Sources */,
-				EA6B2C7F1FF6033700D4F635 /* PageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

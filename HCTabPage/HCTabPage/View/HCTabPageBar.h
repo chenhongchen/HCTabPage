@@ -12,7 +12,7 @@
 
 @class HCTabPageBar;
 @protocol HCTabPageBarDelegate <NSObject>
-- (void)tabPageBar:(HCTabPageBar *)tabPageBar didSelectItemAtIndex:(NSInteger)atIndex fromIndex:(NSInteger)fromIndex;
+- (void)tabPageBar:(HCTabPageBar *)tabPageBar didSelectItemAtIndex:(NSInteger)atIndex fromIndex:(NSInteger)fromIndex animation:(BOOL)animation;
 @end
 
 @interface HCTabPageBar : UIView
@@ -32,6 +32,9 @@
     CGFloat _slideLineHeight;
     UIColor *_botLineColor;
     CGFloat _botLineHeight;
+    CGSize _vLineSize;
+    UIColor *_vLineColor;
+    
     BOOL _realTimeMoveSelItem;
     BOOL _gradientTitleColor;
     BOOL _gradientTitleFont;
@@ -64,6 +67,8 @@
 @property (nonatomic, assign) CGFloat slideLineHeight;
 @property (nonatomic, strong) UIColor *botLineColor;
 @property (nonatomic, assign) CGFloat botLineHeight;
+@property (nonatomic, assign) CGSize vLineSize;
+@property (nonatomic, strong) UIColor *vLineColor;
 
 /** 只要selIndex变化，则移动对应的Item到显示位置 */
 @property (nonatomic, assign) BOOL realTimeMoveSelItem;

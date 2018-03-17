@@ -110,9 +110,9 @@
     NSLog(@"didSelectTabBarAtIndex: %ld fromIndex: %ld", atIndex, fromIndex);
 }
 
-- (void)tabPageView:(HCTabPageView *)tabPageView didChangePageToIndex:(NSInteger)toIndex formIndex:(NSInteger)formIndex
+- (void)tabPageView:(HCTabPageView *)tabPageView didChangePageToIndex:(NSInteger)toIndex fromIndex:(NSInteger)fromIndex
 {
-    NSLog(@"didChangePageToIndex: %ld fromIndex: %ld", toIndex, formIndex);
+    NSLog(@"didChangePageToIndex: %ld fromIndex: %ld", toIndex, fromIndex);
 }
 
 #pragma mark - 事件
