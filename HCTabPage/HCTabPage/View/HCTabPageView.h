@@ -47,6 +47,11 @@
 
 - (void)refreshFrame;
 
+/** 禁止左滑有效宽度（0 ~ 1），用于侧滑返回*/
+@property (nonatomic, assign) CGFloat forbitLeftScrollWidthRatio;
+/** 禁止左滑页，用于侧滑返回*/
+@property (nonatomic, assign) NSInteger forbitLeftScrollPage;
+
 /** tabPageBar 属性设置*/
 @property (nonatomic, assign) CGFloat tabPageBarHeight;
 /** 为0则和bar一样高 */

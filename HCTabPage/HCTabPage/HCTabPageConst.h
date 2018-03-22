@@ -17,3 +17,5 @@ UIKIT_EXTERN NSString *const TabPageEquantBar;
 #define kTP_AniDuration (0.333333)
 #define kTp_MinAniDuration (0.233333)
 
+#define kTP_ScreenH [UIScreen mainScreen].bounds.size.height
+#define kTP_ScreenW [UIScreen mainScreen].bounds.size.width

@@ -11,12 +11,13 @@
 #import "HCTabPageConst.h"
 #import "HCTabPageScrollBar.h"
 #import "HCTabPageTool.h"
+#import "HCTPScrollView.h"
 
 @interface HCTabPageView ()<UIScrollViewDelegate, HCTabPageBarDelegate>
 @property (nonatomic, weak) HCTabPageBar *tabPageBar;
 @property (nonatomic, copy) NSString *barStyle;
 /** 页控制器容器 */
-@property (nonatomic, weak) UIScrollView *pagesScrollView;
+@property (nonatomic, weak) HCTPScrollView *pagesScrollView;
 @property (nonatomic, weak) UIView *barBgView;
 /** 页数 */
 @property (nonatomic, assign) NSInteger pagesNumber;
@@ -86,6 +87,8 @@
     
     self.pagesScrollView.bounces = _bounces;
     self.pagesScrollView.scrollEnabled = _scrollEnabled;
+    self.pagesScrollView.forbitLeftScrollPage = _forbitLeftScrollPage;
+    self.pagesScrollView.forbitLeftScrollWidthRatio = _forbitLeftScrollWidthRatio;
     
     // 用于旋转时适配
     UIInterfaceOrientation orientatin = [UIApplication sharedApplication].statusBarOrientation;
@@ -114,10 +117,10 @@
 }
 
 #pragma mark - 懒加载
-- (UIScrollView *)pagesScrollView
+- (HCTPScrollView *)pagesScrollView
 {
     if (_pagesScrollView == nil) {
-        UIScrollView *pagesScrollView = [[UIScrollView alloc] init];
+        HCTPScrollView *pagesScrollView = [[HCTPScrollView alloc] init];
         [self addSubview:pagesScrollView];
         _pagesScrollView = pagesScrollView;
         _pagesScrollView.pagingEnabled = YES;
