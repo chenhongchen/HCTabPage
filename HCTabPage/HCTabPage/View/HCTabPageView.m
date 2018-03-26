@@ -626,7 +626,7 @@
     width = self.bounds.size.width;
     height = self.bounds.size.height - y;
     self.pagesScrollView.frame = CGRectMake(x, y, width, height);
-    [self bringSubviewToFront:self.tabPageBar];
+//    [self bringSubviewToFront:self.tabPageBar];
     [self sendSubviewToBack:self.pagesScrollView];
 }
 
