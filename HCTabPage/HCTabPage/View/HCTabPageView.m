@@ -316,6 +316,24 @@
     self.tabPageBar.botLineHeight = _botLineHeight;
 }
 
+- (void)setVLineSize:(CGSize)vLineSize
+{
+    _vLineSize = vLineSize;
+    self.tabPageBar.vLineSize = _vLineSize;
+}
+
+- (void)setVLineColor:(UIColor *)vLineColor
+{
+    _vLineColor = vLineColor;
+    self.tabPageBar.vLineColor = _vLineColor;
+}
+
+- (void)setEqualSlideLineWidth:(BOOL)equalSlideLineWidth
+{
+    _equalSlideLineWidth = equalSlideLineWidth;
+    self.tabPageBar.equalSlideLineWidth = _equalSlideLineWidth;
+}
+
 - (void)setRealTimeMoveSelItem:(BOOL)realTimeMoveSelItem
 {
     _realTimeMoveSelItem = realTimeMoveSelItem;

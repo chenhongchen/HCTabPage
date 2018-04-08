@@ -71,8 +71,13 @@
 @property (nonatomic, assign) CGFloat slideLineHeight;
 @property (nonatomic, strong) UIColor *botLineColor;
 @property (nonatomic, assign) CGFloat botLineHeight;
+
+/** 以下对HCTabPageEquantBar有效 */
 @property (nonatomic, assign) CGSize vLineSize;
 @property (nonatomic, strong) UIColor *vLineColor;
+/** 滑动线均分 */
+@property (nonatomic, assign) BOOL equalSlideLineWidth;
+
 /** 只要selIndex变化，则移动对应的Item到显示位置 */
 @property (nonatomic, assign) BOOL realTimeMoveSelItem;
 /** 颜色渐变 */

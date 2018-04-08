@@ -359,11 +359,15 @@
     UIButton *leftItem = _items[leftIndex];
     UIButton *rightItem = _items[rightIndex];
     
+    CGFloat slideW = 0;
+    if (_equalSlideLineWidth && _titles.count) {
+        slideW = [UIScreen mainScreen].bounds.size.width / _titles.count;
+    }
     CGSize size = [leftItem sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
-    CGFloat leftItemW = size.width;
+    CGFloat leftItemW = _equalSlideLineWidth ? slideW : size.width;
     CGFloat leftItemCX = (leftIndex * leftItem.bounds.size.width) + leftItem.bounds.size.width * 0.5;
     size = [rightItem sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
-    CGFloat rightItemW = size.width;
+    CGFloat rightItemW = _equalSlideLineWidth ? slideW : size.width;
     CGFloat rightItemCX = (rightIndex * rightItem.bounds.size.width) + leftItem.bounds.size.width * 0.5;
     CGFloat lToRHorDistance = rightItemCX - leftItemCX;
     CGFloat differenceW = rightItemW - leftItemW;
