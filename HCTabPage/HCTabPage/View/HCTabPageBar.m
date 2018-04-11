@@ -7,6 +7,7 @@
 //
 
 #import "HCTabPageBar.h"
+#import "HCTabPageView.h"
 
 @interface HCTabPageBar ()
 @end
@@ -52,7 +53,11 @@
 /** pageOffset转换成index */
 - (NSArray *)positionsForPageOffsetX:(CGFloat)pageOffsetX
 {
-    CGFloat pageW = self.superview.bounds.size.width;
+    HCTabPageView *tabPageView = (HCTabPageView *)self.superview;
+    CGFloat pageW = tabPageView.bounds.size.width;
+    if (![tabPageView isKindOfClass:[HCTabPageView class]]) {
+        pageW = kTP_ScreenW;
+    }
     if (pageW <= 0) {
         return nil;
     }
