@@ -53,6 +53,7 @@
 @property (nonatomic, assign) NSInteger forbitLeftScrollPage;
 
 /** tabPageBar 属性设置*/
+@property (nonatomic, assign) BOOL tabPageBarEnable;
 @property (nonatomic, assign) CGFloat tabPageBarHeight;
 /** 为0则和bar一样高 */
 @property (nonatomic, assign) CGFloat btnHeight;

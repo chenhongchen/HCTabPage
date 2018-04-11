@@ -217,7 +217,19 @@
     [self setupFrame];
 }
 
+- (void)setScrollEnabled:(BOOL)scrollEnabled
+{
+    _scrollEnabled = scrollEnabled;
+    self.pagesScrollView.scrollEnabled = _scrollEnabled;
+}
+
 #pragma mark - tabPageBar 属性设置
+- (void)setTabPageBarEnable:(BOOL)tabPageBarEnable
+{
+    _tabPageBarEnable = tabPageBarEnable;
+    self.tabPageBar.userInteractionEnabled = _tabPageBarEnable;
+}
+
 - (void)setTabPageBarHeight:(CGFloat)tabPageBarHeight
 {
     _tabPageBarHeight = tabPageBarHeight;
