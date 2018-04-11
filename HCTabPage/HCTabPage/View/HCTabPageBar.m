@@ -53,11 +53,7 @@
 /** pageOffset转换成index */
 - (NSArray *)positionsForPageOffsetX:(CGFloat)pageOffsetX
 {
-    HCTabPageView *tabPageView = (HCTabPageView *)self.superview;
-    CGFloat pageW = tabPageView.bounds.size.width;
-    if (![tabPageView isKindOfClass:[HCTabPageView class]]) {
-        pageW = kTP_ScreenW;
-    }
+    CGFloat pageW = self.pageW;
     if (pageW <= 0) {
         return nil;
     }
@@ -86,5 +82,15 @@
     }
     NSInteger selIndex = ((lRatio < 0.5) ? leftIndex : rightIndex);
     return @[@(selIndex), @(leftIndex), @(rightIndex), @(lRatio)];
+}
+
+- (CGFloat)pageW
+{
+    HCTabPageView *tabPageView = (HCTabPageView *)self.superview;
+    CGFloat pageW = tabPageView.bounds.size.width;
+    if (![tabPageView isKindOfClass:[HCTabPageView class]]) {
+        pageW = kTP_ScreenW;
+    }
+    return pageW;
 }
 @end

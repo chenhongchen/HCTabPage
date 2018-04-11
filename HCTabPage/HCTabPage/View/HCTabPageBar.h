@@ -52,6 +52,8 @@
 - (void)selectTabAtIndex:(NSInteger)selIndex animation:(BOOL)animation;
 /** pageOffsetX转换成index */
 - (NSArray *)positionsForPageOffsetX:(CGFloat)pageOffsetX;
+/** tapPageView的宽 */
+@property (nonatomic, assign, readonly) CGFloat pageW;
 
 /** 为0则和bar一样高 */
 @property (nonatomic, assign) CGFloat btnHeight;

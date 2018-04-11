@@ -95,7 +95,7 @@
 
 - (void)selectTabAtIndex:(NSInteger)selIndex animation:(BOOL)animation
 {
-    _offsetX = selIndex * self.superview.bounds.size.width;
+    _offsetX = selIndex * self.pageW;
     [self setOffsetX:_offsetX animaton:animation];
 }
 
