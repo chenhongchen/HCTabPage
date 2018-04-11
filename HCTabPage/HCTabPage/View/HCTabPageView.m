@@ -244,6 +244,12 @@
     self.tabPageBar.btnHeight = _btnHeight;
 }
 
+- (void)setNavBarSzie:(CGSize)navBarSzie
+{
+    _navBarSzie = navBarSzie;
+    self.tabPageBar.navBarSzie = _navBarSzie;
+}
+
 - (void)setHasBtnAnimation:(BOOL)hasBtnAnimation
 {
     _hasBtnAnimation = hasBtnAnimation;

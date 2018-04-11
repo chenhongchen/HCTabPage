@@ -19,6 +19,7 @@
 {
     NSArray <NSString *> *_titles;
     CGFloat _btnHeight;
+    CGSize _navBarSzie;
     BOOL _hasBtnAnimation;
     CGFloat _leftMargin;
     CGFloat _rightMargin;
@@ -54,6 +55,7 @@
 
 /** 为0则和bar一样高 */
 @property (nonatomic, assign) CGFloat btnHeight;
+@property (nonatomic, assign) CGSize navBarSzie;
 /** 滚动时 btn 的 frame变化是否有动画效果 */
 @property (nonatomic, assign) BOOL hasBtnAnimation;
 @property (nonatomic, assign) CGFloat leftMargin;

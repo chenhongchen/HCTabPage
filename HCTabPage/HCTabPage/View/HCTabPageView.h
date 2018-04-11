@@ -57,6 +57,7 @@
 @property (nonatomic, assign) CGFloat tabPageBarHeight;
 /** 为0则和bar一样高 */
 @property (nonatomic, assign) CGFloat btnHeight;
+@property (nonatomic, assign) CGSize navBarSzie;
 /** btn 的 frame变化是否有动画 */
 @property (nonatomic, assign) BOOL hasBtnAnimation;
 @property (nonatomic, assign) CGFloat leftMargin;
