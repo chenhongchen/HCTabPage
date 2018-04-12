@@ -12,10 +12,12 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    [HCTabPageTool controllerForView:self].navigationItem.titleView = self;
-    CGRect rect = self.frame;
-    rect.size = self.navBarSzie;
+    
+    CGRect rect = CGRectMake(0, 0, self.navBarSzie.width, self.navBarSzie.height);
+    rect.origin.x = (kTP_ScreenW - rect.size.width) * 0.5;
+    rect.origin.y = 0;
     self.frame = rect;
+    [HCTabPageTool controllerForView:self].navigationItem.titleView = self;
     self.alpha = 0.0;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((kTP_IOS11 ? 0 : kTP_AniDuration) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:kTP_AniDuration animations:^{
