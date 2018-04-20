@@ -185,9 +185,8 @@
 {
     if ([_ownVC isKindOfClass:[UIViewController class]]) {
         _ownVC = ownVC;
-        for (UIViewController *pageController in self.pageControllers) {
-            [_ownVC addChildViewController:pageController];
-        }
+        UIViewController *pageController = self.pageControllers[_curIndex];
+        [_ownVC addChildViewController:pageController];
     }
 }
 
@@ -542,6 +541,7 @@
     
     // page控制器初次添加到容器，会自动appear
     if (!nextPageVc.view.superview) {
+        [[self controllerForSelf] addChildViewController:nextPageVc];
         [self.pagesScrollView addSubview:nextPageVc.view];
         if (![_didAppearPageControllers containsObject:nextPageVc]) {
             NSMutableArray *arrayM = [NSMutableArray arrayWithArray:_didAppearPageControllers];
@@ -573,6 +573,7 @@
     UIViewController *nextPageVc = _pageControllers[_nextIndex];
     // page控制器初次添加到容器，会自动appear
     if ([nextPageVc isKindOfClass:[UIViewController class]] && !nextPageVc.view.superview) {
+        [[self controllerForSelf] addChildViewController:nextPageVc];
         [self.pagesScrollView addSubview:nextPageVc.view];
         if (![_didAppearPageControllers containsObject:nextPageVc]) {
             NSMutableArray *arrayM = [NSMutableArray arrayWithArray:_didAppearPageControllers];
@@ -711,7 +712,7 @@
                 }
                 break;
             }
-            [[self controllerForSelf] addChildViewController:pageController];
+//            [[self controllerForSelf] addChildViewController:pageController]; 不能一起加，偶尔会执行viewdidload
             [arrayM addObject:pageController];
         }
         _pageControllers = arrayM;

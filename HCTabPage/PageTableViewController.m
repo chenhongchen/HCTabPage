@@ -60,6 +60,9 @@
 {
     [super viewDidAppear:animated];
     NSLog(@"viewDidAppear - %@", self.text);
+    if (self.navigationController.childViewControllers.count <= 1) {
+        self.tableView.contentOffset = CGPointMake(0, -(88 + CGRectGetHeight([UIApplication sharedApplication].statusBarFrame)));
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
