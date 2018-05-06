@@ -60,7 +60,7 @@
 {
     [super viewDidAppear:animated];
     NSLog(@"viewDidAppear - %@", self.text);
-    if (self.navigationController.childViewControllers.count <= 1) {
+    if (_detineClass == [ScrollBarController class]) {
         self.tableView.contentOffset = CGPointMake(0, -(88 + CGRectGetHeight([UIApplication sharedApplication].statusBarFrame)));
     }
 }
@@ -122,8 +122,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ScrollBarController *vc = [[self.detineClass alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+//    ScrollBarController *vc = [[self.detineClass alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - UIScrollViewDelegate

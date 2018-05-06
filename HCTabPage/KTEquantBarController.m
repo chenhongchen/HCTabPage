@@ -107,7 +107,7 @@
 {
     PageTableViewController *pageVc = [[PageTableViewController alloc] init];
     pageVc.text = [NSString stringWithFormat:@"%ld", (long)index];
-    pageVc.detineClass = [ScrollBarController class];
+    pageVc.detineClass = [self class];
     pageVc.offsetY = self.offsetY + 44;
     if (index == 0) {
         pageVc.delegate = self;
