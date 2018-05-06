@@ -194,6 +194,14 @@
     [self setOffsetX:_offsetX animaton:animation];
 }
 
+- (UIButton *)barBtnAtIndex:(NSInteger)index
+{
+    if (index >= _items.count) {
+        return nil;
+    }
+    return _items[index];
+}
+
 #pragma mark - 内部方法
 - (void)clearItems
 {

@@ -176,6 +176,14 @@
     }
 }
 
+- (UIButton *)barBtnAtIndex:(NSInteger)index
+{
+    if (index >= _items.count) {
+        return nil;
+    }
+    return _items[index];
+}
+
 #pragma mark - 初始化
 - (void)layoutSubviews
 {

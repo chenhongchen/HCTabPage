@@ -93,4 +93,9 @@
     }
     return pageW;
 }
+
+- (UIButton *)barBtnAtIndex:(NSInteger)index
+{
+    return nil;
+}
 @end

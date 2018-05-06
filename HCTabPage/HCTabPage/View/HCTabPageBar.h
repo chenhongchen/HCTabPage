@@ -46,6 +46,9 @@
 @property (nonatomic, strong) NSArray <NSString *> *titles;
 @property (nonatomic, weak) id <HCTabPageBarDelegate> delegate;
 
+/** 获取barBtn */
+- (UIButton *)barBtnAtIndex:(NSInteger)index;
+
 /** 根据page的当前的offsetX 设置slideLine、selItem */
 - (void)setOffsetX:(CGFloat)offsetX animaton:(BOOL)animation;
 /** 根据选中的索引 设置slideLine、selItem */

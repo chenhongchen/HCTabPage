@@ -17,6 +17,7 @@
 
 @optional
 - (void)tabPageView:(HCTabPageView *)tabPageView loadDataError:(NSString *)error;
+- (void)didLoadDataCompleteForTabPageView:(HCTabPageView *)tabPageView;
 @end
 
 @protocol HCTabPageViewDelegate <NSObject>
@@ -46,6 +47,9 @@
 - (void)setPageAtIndex:(NSInteger)index animation:(BOOL)animation;
 
 - (void)refreshFrame;
+
+/** 获取barBtn */
+- (UIButton *)barBtnAtIndex:(NSInteger)index;
 
 /** 禁止左滑有效宽度（0 ~ 1），用于侧滑返回*/
 @property (nonatomic, assign) CGFloat forbitLeftScrollWidthRatio;

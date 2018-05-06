@@ -163,6 +163,12 @@
         [self selectPageAtIndex:_curIndex animation:NO];
         [self.tabPageBar selectTabAtIndex:_curIndex animation:NO];
         self.pagesScrollView.delegate = self;
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{ // 好等bar刷新好才执行回调
+            if ([_dataSource respondsToSelector:@selector(didLoadDataCompleteForTabPageView:)]) {
+                [_dataSource didLoadDataCompleteForTabPageView:self];
+            }
+        });
     }
 }
 
@@ -220,6 +226,11 @@
 {
     _scrollEnabled = scrollEnabled;
     self.pagesScrollView.scrollEnabled = _scrollEnabled;
+}
+
+- (UIButton *)barBtnAtIndex:(NSInteger)index
+{
+    return [self.tabPageBar barBtnAtIndex:index];
 }
 
 #pragma mark - tabPageBar 属性设置
