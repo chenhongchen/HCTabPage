@@ -552,8 +552,8 @@
     
     // page控制器初次添加到容器，会自动appear
     if (!nextPageVc.view.superview) {
-        [[self controllerForSelf] addChildViewController:nextPageVc];
         [self.pagesScrollView addSubview:nextPageVc.view];
+        [[self controllerForSelf] addChildViewController:nextPageVc];
         if (![_didAppearPageControllers containsObject:nextPageVc]) {
             NSMutableArray *arrayM = [NSMutableArray arrayWithArray:_didAppearPageControllers];
             [arrayM addObject:nextPageVc];
@@ -584,8 +584,8 @@
     UIViewController *nextPageVc = _pageControllers[_nextIndex];
     // page控制器初次添加到容器，会自动appear
     if ([nextPageVc isKindOfClass:[UIViewController class]] && !nextPageVc.view.superview) {
-        [[self controllerForSelf] addChildViewController:nextPageVc];
         [self.pagesScrollView addSubview:nextPageVc.view];
+        [[self controllerForSelf] addChildViewController:nextPageVc];
         if (![_didAppearPageControllers containsObject:nextPageVc]) {
             NSMutableArray *arrayM = [NSMutableArray arrayWithArray:_didAppearPageControllers];
             [arrayM addObject:nextPageVc];
