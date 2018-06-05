@@ -88,4 +88,7 @@
 
 /** 自定义属性 */
 @property (nonatomic, strong) NSDictionary *otherAttri;
+
+/** tablePageView所在的控制器 */
+@property (nonatomic, weak) UIViewController *tablePageViewVc;
 @end

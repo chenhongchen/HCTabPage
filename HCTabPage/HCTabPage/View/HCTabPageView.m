@@ -98,6 +98,8 @@
         _orientation = [UIApplication sharedApplication].statusBarOrientation;
         [self scrollViewDidScroll:self.pagesScrollView];
     }
+    
+    self.tabPageBar.tablePageViewVc = [self controllerForSelf];
 }
 
 - (void)dealloc
