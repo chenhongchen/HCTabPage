@@ -100,6 +100,7 @@
     }
     
     self.tabPageBar.tablePageViewVc = [self controllerForSelf];
+    [self.tabPageBar tablePageViewLayoutSubviews];
 }
 
 - (void)dealloc

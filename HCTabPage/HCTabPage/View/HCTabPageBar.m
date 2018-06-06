@@ -98,4 +98,9 @@
 {
     return nil;
 }
+
+- (void)tablePageViewLayoutSubviews
+{
+    
+}
 @end

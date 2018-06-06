@@ -9,16 +9,8 @@
 #import "HCTabPageSegmNaviBar.h"
 
 @implementation HCTabPageSegmNaviBar
-- (void)layoutSubviews
+- (void)tablePageViewLayoutSubviews
 {
-    [super layoutSubviews];
     [HCTabPageTool controllerForView:self].navigationItem.titleView = self.segment;
-    [self.segment sizeToFit];
-    self.segment.alpha = 0.0;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((kTP_IOS11 ? 0 : kTP_AniDuration) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:kTP_AniDuration animations:^{
-            self.segment.alpha = 1.0;
-        }];
-    });
-}
+    [self.segment sizeToFit];}
 @end

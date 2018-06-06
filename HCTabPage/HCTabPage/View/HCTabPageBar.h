@@ -91,4 +91,5 @@
 
 /** tablePageView所在的控制器 */
 @property (nonatomic, weak) UIViewController *tablePageViewVc;
+- (void)tablePageViewLayoutSubviews;
 @end
