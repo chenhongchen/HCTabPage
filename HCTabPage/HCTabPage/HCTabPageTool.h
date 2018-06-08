@@ -10,4 +10,5 @@
 
 @interface HCTabPageTool : NSObject
 + (UIViewController *)controllerForView:(UIView *)view;
++ (UIViewController *)vcHasNavcWithCurVc:(UIViewController *)curVc;
 @end

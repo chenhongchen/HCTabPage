@@ -11,6 +11,8 @@
 @implementation HCTabPageSegmNaviBar
 - (void)tablePageViewLayoutSubviews
 {
-    [HCTabPageTool controllerForView:self].navigationItem.titleView = self.segment;
-    [self.segment sizeToFit];}
+    UIViewController *vc = [HCTabPageTool vcHasNavcWithCurVc:self.tablePageViewVc];
+    vc.navigationItem.titleView = self.segment;
+    [self.segment sizeToFit];
+}
 @end

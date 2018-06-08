@@ -15,6 +15,7 @@
     rect.origin.x = (kTP_ScreenW - rect.size.width) * 0.5;
     rect.origin.y = 0;
     self.frame = rect;
-    self.tablePageViewVc.navigationItem.titleView = self;
+    UIViewController *vc = [HCTabPageTool vcHasNavcWithCurVc:self.tablePageViewVc];
+    vc.navigationItem.titleView = self;
 }
 @end

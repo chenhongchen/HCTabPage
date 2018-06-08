@@ -19,4 +19,19 @@
     }
     return nil;
 }
+
++ (UIViewController *)vcHasNavcWithCurVc:(UIViewController *)curVc
+{
+    if (!curVc.navigationController) {
+        if (!curVc.parentViewController) {
+            return curVc;
+        }
+        else {
+            return [self vcHasNavcWithCurVc:curVc.parentViewController];
+        }
+    }
+    else {
+        return curVc;
+    }
+}
 @end

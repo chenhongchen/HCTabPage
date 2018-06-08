@@ -192,10 +192,12 @@
 
 - (void)setOwnVC:(UIViewController *)ownVC
 {
-    if ([_ownVC isKindOfClass:[UIViewController class]]) {
+    if ([ownVC isKindOfClass:[UIViewController class]]) {
         _ownVC = ownVC;
         UIViewController *pageController = self.pageControllers[_curIndex];
-        [_ownVC addChildViewController:pageController];
+        if ([pageController isKindOfClass:[UIViewController class]]) {
+            [_ownVC addChildViewController:pageController];
+        }
     }
 }
 
