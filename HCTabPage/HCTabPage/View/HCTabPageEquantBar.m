@@ -58,6 +58,7 @@
 - (void)setTitles:(NSArray<NSString *> *)titles
 {
     [self clearItems];
+    [self clearVLines];
     _titles = titles;
     NSMutableArray *arrayM = [NSMutableArray array];
     NSMutableArray *vLinesM = [NSMutableArray array];
@@ -201,6 +202,14 @@
         [item removeFromSuperview];
     }
     _items = nil;
+}
+
+- (void)clearVLines
+{
+    for (UIView *vLine in _vLines) {
+        [vLine removeFromSuperview];
+    }
+    _vLines = nil;
 }
 
 - (void)setupOtherViewsFrame
