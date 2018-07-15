@@ -265,6 +265,13 @@
     }
 }
 
+- (void)setupBtnsUnSelTitleColor
+{
+    for (UIButton *item in _items) {
+        [item setTitleColor:_titleColor forState:UIControlStateNormal];
+    }
+}
+
 /** 设置items的frame，及其他属性 */
 - (void)setupItemsWithPositions:(NSArray *)positions animation:(BOOL)animation
 {
@@ -289,7 +296,8 @@
             UIButton *selItem = _items[_selIndex];
             selItem.titleLabel.font = _selTitleFont;
             if (!_gradientTitleColor) {
-                [lastItem setTitleColor:_titleColor forState:UIControlStateNormal];
+//                [lastItem setTitleColor:_titleColor forState:UIControlStateNormal];
+                [self setupBtnsUnSelTitleColor];
                 [selItem setTitleColor:_selTitleColor forState:UIControlStateNormal];
             }
             [self setupBtnsFrameWithAnimation:_hasBtnAnimation && animation];
@@ -308,7 +316,8 @@
             _selIndex = selIndex;
             UIButton *selItem = _items[_selIndex];
             if (!_gradientTitleColor) {
-                [lastItem setTitleColor:_titleColor forState:UIControlStateNormal];
+//                [lastItem setTitleColor:_titleColor forState:UIControlStateNormal];
+                [self setupBtnsUnSelTitleColor];
                 [selItem setTitleColor:_selTitleColor forState:UIControlStateNormal];
             }
             // 设置selItem字体
@@ -351,8 +360,9 @@
     
     // 设置lastItem、selItem字体淡入淡出效果颜色
     if (lRatio == 0) {
-        UIButton *lastItem = _items[_lastIndex];
-        [lastItem setTitleColor:_titleColor forState:UIControlStateNormal];
+//        UIButton *lastItem = _items[_lastIndex];
+//        [lastItem setTitleColor:_titleColor forState:UIControlStateNormal];
+        [self setupBtnsUnSelTitleColor];
         UIButton *selItem = _items[_selIndex];
         [selItem setTitleColor:_selTitleColor forState:UIControlStateNormal];
     }
