@@ -322,6 +322,9 @@
             }
             // 设置selItem字体
             NSString *fontUIUsageAttribute = _selTitleFont.fontDescriptor.fontAttributes[@"NSCTFontUIUsageAttribute"];
+            if (fontUIUsageAttribute == nil) {
+                fontUIUsageAttribute =  _selTitleFont.fontDescriptor.fontAttributes[@"NSFontNameAttribute"];
+            }
             if ([fontUIUsageAttribute isEqualToString:@"CTFontEmphasizedUsage"]) {// 粗体的情况
                 selItem.titleLabel.font = [UIFont boldSystemFontOfSize:_titleFont.pointSize];
             }
