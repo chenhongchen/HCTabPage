@@ -288,7 +288,7 @@
     
     // 设置lastItem、selItem字体，没有渐变效果时字体颜色
     if (!_gradientTitleFont) { // 没有渐变效果字体
-        if ((_selIndex != selIndex || _selIndex == _lastIndex) && lRatio == 0) {
+        if (lRatio == 0) {
             _lastIndex = _selIndex;
             UIButton *lastItem = _items[_lastIndex];
             lastItem.titleLabel.font = _titleFont;
