@@ -163,6 +163,10 @@
         self.pagesScrollView.delegate = nil;
         [self loadDataSource];
         
+        if (_curIndex >= _pagesNumber) {
+            _curIndex = (_pagesNumber > 0 ? _pagesNumber - 1 : 0);
+            _nextIndex = _curIndex;
+        }
         [self selectPageAtIndex:_curIndex animation:NO];
         [self.tabPageBar selectTabAtIndex:_curIndex animation:NO];
         self.pagesScrollView.delegate = self;
@@ -441,8 +445,8 @@
 
 - (void)clearSourceData
 {
-    _curIndex = 0;
-    _nextIndex = 0;
+//    _curIndex = 0;
+//    _nextIndex = 0;
     _pagesNumber = 0;
     for (UIViewController *pageVc in _pageControllers) {
         if (pageVc.isViewLoaded) {
