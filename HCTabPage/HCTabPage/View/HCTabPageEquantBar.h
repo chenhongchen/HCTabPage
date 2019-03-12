@@ -9,5 +9,9 @@
 #import "HCTabPageBar.h"
 
 @interface HCTabPageEquantBar : HCTabPageBar
-
+{
+    NSArray *_items;
+    __weak UIView *_slideLine;
+    __weak UIView *_contentView;
+}
 @end

@@ -62,6 +62,7 @@
 /** 为0则和bar一样高 */
 @property (nonatomic, assign) CGFloat btnHeight;
 @property (nonatomic, assign) CGSize navBarSzie;
+@property (nonatomic, weak) UINavigationItem *navItem;
 /** btn 的 frame变化是否有动画 */
 @property (nonatomic, assign) BOOL hasBtnAnimation;
 @property (nonatomic, assign) CGFloat leftMargin;
@@ -75,6 +76,7 @@
 @property (nonatomic, strong) UIColor *barBgColor;
 @property (nonatomic, strong) UIColor *slideLineColor;
 @property (nonatomic, assign) CGFloat slideLineHeight;
+@property (nonatomic, assign) CGFloat slideLineWidth;
 @property (nonatomic, strong) UIColor *botLineColor;
 @property (nonatomic, assign) CGFloat botLineHeight;
 

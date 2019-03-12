@@ -1,14 +1,14 @@
 //
-//  HCTabPageScrollSLJumpBar.m
+//  HCTabPageJumpEquantBar.m
 //  HCTabPage
 //
-//  Created by chc on 2017/12/29.
-//  Copyright © 2017年 CHC. All rights reserved.
+//  Created by chc on 2019/3/12.
+//  Copyright © 2019 CHC. All rights reserved.
 //
 
-#import "HCTabPageScrollSLJumpBar.h"
+#import "HCTabPageJumpEquantBar.h"
 
-@implementation HCTabPageScrollSLJumpBar
+@implementation HCTabPageJumpEquantBar
 
 - (void)setupSlideLineFrameWithPositions:(NSArray *)positions animation:(BOOL)animation
 {
@@ -42,7 +42,7 @@
         maxX = (rightItemCX) + hMinw - minW * (1 - lRatio) * 2;
     }
     CGRect rect = _slideLine.frame;
-    rect.origin.y = _scrollView.bounds.size.height - rect.size.height;
+    rect.origin.y = _contentView.bounds.size.height - rect.size.height;
     rect.size.width = maxX - minX;
     rect.origin.x = minX;
     

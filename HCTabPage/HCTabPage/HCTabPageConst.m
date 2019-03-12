@@ -13,4 +13,6 @@ NSString *const TabPageSegmBar = @"HCTabPageSegmBar";
 NSString *const TabPageSegmNaviBar = @"HCTabPageSegmNaviBar";
 NSString *const TabPageEquantBar = @"HCTabPageEquantBar";
 NSString *const TabPageEquantNavBar = @"HCTabPageEquantNavBar";
+NSString *const TabPageJumpEquantBar = @"HCTabPageJumpEquantBar";
+NSString *const TabPageJumpEquantNavBar = @"HCTabPageJumpEquantNavBar";
 

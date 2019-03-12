@@ -1,14 +1,14 @@
 //
-//  HCTabPageEquantNavBar.m
+//  HCTabPageJumpEquantNavBar.m
 //  HCTabPage
 //
-//  Created by chc on 2018/4/11.
-//  Copyright © 2018年 CHC. All rights reserved.
+//  Created by chc on 2019/3/12.
+//  Copyright © 2019 CHC. All rights reserved.
 //
 
-#import "HCTabPageEquantNavBar.h"
+#import "HCTabPageJumpEquantNavBar.h"
 
-@implementation HCTabPageEquantNavBar
+@implementation HCTabPageJumpEquantNavBar
 - (void)tablePageViewLayoutSubviews
 {
     CGRect rect = CGRectMake(0, 0, self.navBarSzie.width, self.navBarSzie.height);

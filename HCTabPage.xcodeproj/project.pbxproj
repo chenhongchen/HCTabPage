@@ -31,6 +31,8 @@
 		EA6B2C801FF6033700D4F635 /* ScrollBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6B2C771FF6033600D4F635 /* ScrollBarController.m */; };
 		EA6B2C811FF6033700D4F635 /* ScrollSLJumpBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6B2C781FF6033700D4F635 /* ScrollSLJumpBarController.m */; };
 		EA6B2C821FF6033700D4F635 /* SegmBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6B2C791FF6033700D4F635 /* SegmBarController.m */; };
+		EAA41321223797EB002D7A80 /* HCTabPageJumpEquantNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA4131E223797EA002D7A80 /* HCTabPageJumpEquantNavBar.m */; };
+		EAA41322223797EB002D7A80 /* HCTabPageJumpEquantBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA4131F223797EB002D7A80 /* HCTabPageJumpEquantBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +102,10 @@
 		EA6B2C7A1FF6033700D4F635 /* SegmBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmBarController.h; sourceTree = "<group>"; };
 		EA6B2C7B1FF6033700D4F635 /* SegmNaviBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmNaviBarController.h; sourceTree = "<group>"; };
 		EA6B2C7C1FF6033700D4F635 /* ScrollBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollBarController.h; sourceTree = "<group>"; };
+		EAA4131D223797EA002D7A80 /* HCTabPageJumpEquantNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTabPageJumpEquantNavBar.h; sourceTree = "<group>"; };
+		EAA4131E223797EA002D7A80 /* HCTabPageJumpEquantNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTabPageJumpEquantNavBar.m; sourceTree = "<group>"; };
+		EAA4131F223797EB002D7A80 /* HCTabPageJumpEquantBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTabPageJumpEquantBar.m; sourceTree = "<group>"; };
+		EAA41320223797EB002D7A80 /* HCTabPageJumpEquantBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTabPageJumpEquantBar.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,10 +214,16 @@
 		EA6B2C591FF5F54300D4F635 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EA6B2C631FF5F54300D4F635 /* HCTabPageView.h */,
-				EA6B2C5C1FF5F54300D4F635 /* HCTabPageView.m */,
 				EA6B2C651FF5F54300D4F635 /* HCTabPageBar.h */,
 				EA6B2C5F1FF5F54300D4F635 /* HCTabPageBar.m */,
+				EA480215205B557500E146DC /* HCTabPageEquantBar.h */,
+				EA480216205B557500E146DC /* HCTabPageEquantBar.m */,
+				EA571C7C207DA1DC00423FA1 /* HCTabPageEquantNavBar.h */,
+				EA571C7D207DA1DC00423FA1 /* HCTabPageEquantNavBar.m */,
+				EAA41320223797EB002D7A80 /* HCTabPageJumpEquantBar.h */,
+				EAA4131F223797EB002D7A80 /* HCTabPageJumpEquantBar.m */,
+				EAA4131D223797EA002D7A80 /* HCTabPageJumpEquantNavBar.h */,
+				EAA4131E223797EA002D7A80 /* HCTabPageJumpEquantNavBar.m */,
 				EA6B2C5E1FF5F54300D4F635 /* HCTabPageScrollBar.h */,
 				EA6B2C641FF5F54300D4F635 /* HCTabPageScrollBar.m */,
 				EA6B2C5B1FF5F54300D4F635 /* HCTabPageScrollSLJumpBar.h */,
@@ -220,10 +232,8 @@
 				EA6B2C5D1FF5F54300D4F635 /* HCTabPageSegmBar.m */,
 				EA6B2C611FF5F54300D4F635 /* HCTabPageSegmNaviBar.h */,
 				EA6B2C5A1FF5F54300D4F635 /* HCTabPageSegmNaviBar.m */,
-				EA480215205B557500E146DC /* HCTabPageEquantBar.h */,
-				EA480216205B557500E146DC /* HCTabPageEquantBar.m */,
-				EA571C7C207DA1DC00423FA1 /* HCTabPageEquantNavBar.h */,
-				EA571C7D207DA1DC00423FA1 /* HCTabPageEquantNavBar.m */,
+				EA6B2C631FF5F54300D4F635 /* HCTabPageView.h */,
+				EA6B2C5C1FF5F54300D4F635 /* HCTabPageView.m */,
 				EA53D0C320640928000668B5 /* HCTPScrollView.h */,
 				EA53D0C420640928000668B5 /* HCTPScrollView.m */,
 			);
@@ -364,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA6B2C6C1FF5F54300D4F635 /* HCTabPageBar.m in Sources */,
+				EAA41321223797EB002D7A80 /* HCTabPageJumpEquantNavBar.m in Sources */,
 				EA6B2C821FF6033700D4F635 /* SegmBarController.m in Sources */,
 				EA6B2C6A1FF5F54300D4F635 /* HCTabPageView.m in Sources */,
 				EA6B2C811FF6033700D4F635 /* ScrollSLJumpBarController.m in Sources */,
@@ -372,6 +383,7 @@
 				EA53D0C520640928000668B5 /* HCTPScrollView.m in Sources */,
 				EA6B2C7E1FF6033700D4F635 /* PageTableViewController.m in Sources */,
 				EA571C7E207DA1DC00423FA1 /* HCTabPageEquantNavBar.m in Sources */,
+				EAA41322223797EB002D7A80 /* HCTabPageJumpEquantBar.m in Sources */,
 				EA6B2C7D1FF6033700D4F635 /* SegmNaviBarController.m in Sources */,
 				EA48021D205B67A200E146DC /* KTEquantBarController.m in Sources */,
 				EA6B2C801FF6033700D4F635 /* ScrollBarController.m in Sources */,

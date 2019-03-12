@@ -269,6 +269,12 @@
     self.tabPageBar.navBarSzie = _navBarSzie;
 }
 
+- (void)setNavItem:(UINavigationItem *)navItem
+{
+    _navItem = navItem;
+    self.tabPageBar.navItem = _navItem;
+}
+
 - (void)setHasBtnAnimation:(BOOL)hasBtnAnimation
 {
     _hasBtnAnimation = hasBtnAnimation;
@@ -339,6 +345,12 @@
 {
     _slideLineHeight = slideLineHeight;
     self.tabPageBar.slideLineHeight = _slideLineHeight;
+}
+
+- (void)setSlideLineWidth:(CGFloat)slideLineWidth
+{
+    _slideLineWidth = slideLineWidth;
+    self.tabPageBar.slideLineWidth = _slideLineWidth;
 }
 
 - (void)setBotLineColor:(UIColor *)botLineColor

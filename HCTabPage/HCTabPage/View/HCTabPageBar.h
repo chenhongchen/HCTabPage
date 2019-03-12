@@ -31,6 +31,7 @@
     UIColor *_bgColor;
     UIColor *_slideLineColor;
     CGFloat _slideLineHeight;
+    CGFloat _slideLineWidth;
     UIColor *_botLineColor;
     CGFloat _botLineHeight;
     CGSize _vLineSize;
@@ -61,6 +62,7 @@
 /** 为0则和bar一样高 */
 @property (nonatomic, assign) CGFloat btnHeight;
 @property (nonatomic, assign) CGSize navBarSzie;
+@property (nonatomic, weak) UINavigationItem *navItem;
 /** 滚动时 btn 的 frame变化是否有动画效果 */
 @property (nonatomic, assign) BOOL hasBtnAnimation;
 @property (nonatomic, assign) CGFloat leftMargin;
@@ -73,6 +75,8 @@
 @property (nonatomic, strong) UIColor *bgColor;
 @property (nonatomic, strong) UIColor *slideLineColor;
 @property (nonatomic, assign) CGFloat slideLineHeight;
+/** jumpbar有效 */
+@property (nonatomic, assign) CGFloat slideLineWidth;
 @property (nonatomic, strong) UIColor *botLineColor;
 @property (nonatomic, assign) CGFloat botLineHeight;
 /** 以下对HCTabPageEquantBar有效 */
