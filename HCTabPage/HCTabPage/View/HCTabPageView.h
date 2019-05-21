@@ -25,7 +25,9 @@
 - (void)tabPageView:(HCTabPageView *)tabPageView didSelectTabBarAtIndex:(NSInteger)atIndex fromIndex:(NSInteger)fromIndex;
 - (void)tabPageView:(HCTabPageView *)tabPageView willChangePageToIndex:(NSInteger)toIndex fromIndex:(NSInteger)fromIndex;
 - (void)tabPageView:(HCTabPageView *)tabPageView didChangePageToIndex:(NSInteger)toIndex fromIndex:(NSInteger)fromIndex;
-- (void)tabPageViewDidScroll:(HCTabPageView *)tabPageView;
+- (void)tabPageViewDidScroll:(HCTabPageView *)tabPageView scrollView:(UIScrollView *)scrollView;
+- (void)tabPageViewWillBeginDragging:(HCTabPageView *)tabPageView scrollView:(UIScrollView *)scrollView;
+- (void)tabPageViewDidEndDragging:(HCTabPageView *)tabPageView willDecelerate:(BOOL)decelerate scrollView:(UIScrollView *)scrollView;
 @end
 
 @interface HCTabPageView : UIView

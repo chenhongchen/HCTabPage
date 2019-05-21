@@ -412,12 +412,28 @@
 {
     UIInterfaceOrientation orientatin = [UIApplication sharedApplication].statusBarOrientation;
     if (_orientation == orientatin) {// 没有旋转才调用这些方法
-        if ([self.delegate respondsToSelector:@selector(tabPageViewDidScroll:)]) {
-            [self.delegate tabPageViewDidScroll:self];
+        if ([self.delegate respondsToSelector:@selector(tabPageViewDidScroll:scrollView:)]) {
+            [self.delegate tabPageViewDidScroll:self scrollView:scrollView];
         }
         [self setupNextAndCurIndex];
         [self setupNextAndCurPageControllerForShow];
         [self.tabPageBar setOffsetX:scrollView.contentOffset.x animaton:YES];
+    }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    if ([self.delegate respondsToSelector:@selector(tabPageViewWillBeginDragging:scrollView:)]) {
+        [self.delegate tabPageViewWillBeginDragging:self scrollView:scrollView];
+    }
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if ([self.delegate respondsToSelector:@selector(tabPageViewDidEndDragging:willDecelerate:scrollView:)]) {
+        [self.delegate tabPageViewDidEndDragging:self willDecelerate:decelerate scrollView:scrollView];
     }
 }
 
