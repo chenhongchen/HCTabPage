@@ -707,7 +707,7 @@
     self.barBgView.frame = CGRectMake(x, y, width, height);
     
     x = 0;
-    y = (_passThrough || _barY > 0) ? 0 : CGRectGetMaxY(self.barBgView.frame);
+    y = (_passThrough/* || _barY > 0*/) ? 0 : CGRectGetMaxY(self.barBgView.frame);
     width = self.bounds.size.width;
     height = self.bounds.size.height - y;
     self.pagesScrollView.frame = CGRectMake(x, y, width, height);
