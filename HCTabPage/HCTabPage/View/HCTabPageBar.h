@@ -32,6 +32,7 @@
     UIColor *_slideLineColor;
     CGFloat _slideLineHeight;
     CGFloat _slideLineWidth;
+    BOOL _slideLineCap;
     UIColor *_botLineColor;
     CGFloat _botLineHeight;
     CGSize _vLineSize;
@@ -75,6 +76,7 @@
 @property (nonatomic, strong) UIColor *bgColor;
 @property (nonatomic, strong) UIColor *slideLineColor;
 @property (nonatomic, assign) CGFloat slideLineHeight;
+@property (nonatomic, assign) BOOL slideLineCap;
 /** jumpbar有效 */
 @property (nonatomic, assign) CGFloat slideLineWidth;
 @property (nonatomic, strong) UIColor *botLineColor;

@@ -79,6 +79,7 @@
 @property (nonatomic, strong) UIColor *slideLineColor;
 @property (nonatomic, assign) CGFloat slideLineHeight;
 @property (nonatomic, assign) CGFloat slideLineWidth;
+@property (nonatomic, assign) BOOL slideLineCap;
 @property (nonatomic, strong) UIColor *botLineColor;
 @property (nonatomic, assign) CGFloat botLineHeight;
 

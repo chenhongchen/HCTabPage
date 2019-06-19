@@ -127,6 +127,17 @@
     CGRect rect = self.slideLine.frame;
     rect.size.height = _slideLineHeight;
     self.slideLine.frame = rect;
+    if (_slideLineCap) {
+        self.slideLine.layer.cornerRadius = self.slideLine.bounds.size.height * 0.5;
+    }
+}
+
+- (void)setSlideLineCap:(BOOL)slideLineCap
+{
+    _slideLineCap = slideLineCap;
+    if (_slideLineCap) {
+        self.slideLine.layer.cornerRadius = self.slideLine.bounds.size.height * 0.5;
+    }
 }
 
 - (void)setBotLineColor:(UIColor *)botLineColor

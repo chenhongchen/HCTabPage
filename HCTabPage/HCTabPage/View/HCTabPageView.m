@@ -353,6 +353,12 @@
     self.tabPageBar.slideLineWidth = _slideLineWidth;
 }
 
+- (void)setSlideLineCap:(BOOL)slideLineCap
+{
+    _slideLineCap = slideLineCap;
+    self.tabPageBar.slideLineCap = _slideLineCap;
+}
+
 - (void)setBotLineColor:(UIColor *)botLineColor
 {
     _botLineColor = botLineColor;
