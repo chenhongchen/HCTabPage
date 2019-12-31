@@ -227,14 +227,16 @@
 {
     CGFloat selfHeight = self.bounds.size.height;
     CGFloat selfWidth = self.bounds.size.width;
+    CGFloat contentViewW = selfWidth - self.leftMargin - self.rightMargin;
+    CGFloat x = self.leftMargin;
     if (_btnHeight <= 0) {
-        self.contentView.frame = CGRectMake(0, 0, selfWidth, selfHeight - _botLineHeight);
+        self.contentView.frame = CGRectMake(x, 0, contentViewW, selfHeight - _botLineHeight);
     }
     else {
         CGFloat h = selfHeight - _botLineHeight;
         CGFloat centerX = h * 0.5;
         CGFloat y = ceil(centerX - _btnHeight * 0.5);
-        self.contentView.frame = CGRectMake(0, y, selfWidth, _btnHeight);
+        self.contentView.frame = CGRectMake(x, y, contentViewW, _btnHeight);
     }
     self.botLine.frame = CGRectMake(0, self.bounds.size.height - _botLineHeight, self.bounds.size.width, _botLineHeight);
 }
