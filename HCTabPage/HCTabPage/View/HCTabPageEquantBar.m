@@ -197,6 +197,15 @@
 }
 
 #pragma mark - 初始化
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        self.leftMargin = 0;
+        self.rightMargin = 0;
+    }
+    return self;
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
